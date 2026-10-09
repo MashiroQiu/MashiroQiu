@@ -1,0 +1,4520 @@
+diff --git a/.idea/deploymentTargetSelector.xml b/.idea/deploymentTargetSelector.xml
+index 944edf7..4626866 100644
+--- a/.idea/deploymentTargetSelector.xml
++++ b/.idea/deploymentTargetSelector.xml
+@@ -2,23 +2,22 @@
+ <project version="4">
+   <component name="deploymentTargetSelector">
+     <selectionStates>
+-      <SelectionState runConfigName="lyric.bridge.localcentralapp">
++      <SelectionState runConfigName="lyricon">
+         <option name="selectionMode" value="DROPDOWN" />
+-        <DialogSelection />
+       </SelectionState>
+-      <SelectionState runConfigName="lyric.bridge.centralapp">
++      <SelectionState runConfigName="lyric.lyricViewAppTest">
++        <option name="selectionMode" value="DROPDOWN" />
++      </SelectionState>
++      <SelectionState runConfigName="test.lyricViewAppTest">
+         <option name="selectionMode" value="DROPDOWN" />
+-        <DialogSelection />
+       </SelectionState>
+       <SelectionState runConfigName="lyric.viewAppTest">
+         <option name="selectionMode" value="DROPDOWN" />
+-        <DialogSelection />
+       </SelectionState>
+-      <SelectionState runConfigName="lyricon">
++      <SelectionState runConfigName="lyric.bridge.localcentralapp">
+         <option name="selectionMode" value="DROPDOWN" />
+-        <DialogSelection />
+       </SelectionState>
+-      <SelectionState runConfigName="testLyricTranslation()">
++      <SelectionState runConfigName="lyric.bridge.centralapp">
+         <option name="selectionMode" value="DROPDOWN" />
+       </SelectionState>
+       <SelectionState runConfigName="app">
+diff --git a/.idea/dictionaries/project.xml b/.idea/dictionaries/project.xml
+index 3e1bc03..721f9d2 100644
+--- a/.idea/dictionaries/project.xml
++++ b/.idea/dictionaries/project.xml
+@@ -28,7 +28,6 @@
+       <w>xposedmodule</w>
+       <w>xposedscope</w>
+       <w>xposedsharedprefs</w>
+-      <w>xpreferences</w>
+     </words>
+   </dictionary>
+ </component>
+\ No newline at end of file
+diff --git a/.idea/gradle.xml b/.idea/gradle.xml
+index 4211e8f..b80ccee 100644
+--- a/.idea/gradle.xml
++++ b/.idea/gradle.xml
+@@ -16,8 +16,6 @@
+             <option value="$PROJECT_DIR$/lyric/ai" />
+             <option value="$PROJECT_DIR$/lyric/bridge" />
+             <option value="$PROJECT_DIR$/lyric/bridge/central" />
+-            <option value="$PROJECT_DIR$/lyric/bridge/centralapp" />
+-            <option value="$PROJECT_DIR$/lyric/bridge/localcentralapp" />
+             <option value="$PROJECT_DIR$/lyric/bridge/provider" />
+             <option value="$PROJECT_DIR$/lyric/bridge/subscriber" />
+             <option value="$PROJECT_DIR$/lyric/model" />
+@@ -26,7 +24,6 @@
+             <option value="$PROJECT_DIR$/lyric/view" />
+             <option value="$PROJECT_DIR$/lyric/viewAppTest" />
+             <option value="$PROJECT_DIR$/lyricon" />
+-            <option value="$PROJECT_DIR$/opencc-lite" />
+             <option value="$PROJECT_DIR$/xposed" />
+           </set>
+         </option>
+diff --git a/.idea/inspectionProfiles/Project_Default.xml b/.idea/inspectionProfiles/Project_Default.xml
+index e11909d..7fc49f3 100644
+--- a/.idea/inspectionProfiles/Project_Default.xml
++++ b/.idea/inspectionProfiles/Project_Default.xml
+@@ -1,6 +1,7 @@
+ <component name="InspectionProjectProfileManager">
+   <profile version="1.0">
+     <option name="myName" value="Project Default" />
++    <inspection_tool class="AndroidLintInlinedApi" enabled="true" level="ERROR" enabled_by_default="true" editorAttributes="ERRORS_ATTRIBUTES" />
+     <inspection_tool class="AssignedValueIsNeverRead" enabled="false" level="WARNING" enabled_by_default="false" />
+     <inspection_tool class="ComposePreviewDimensionRespectsLimit" enabled="true" level="WARNING" enabled_by_default="true">
+       <option name="composableFile" value="true" />
+@@ -18,6 +19,7 @@
+       <option name="composableFile" value="true" />
+       <option name="previewFile" value="true" />
+     </inspection_tool>
++    <inspection_tool class="ConvertTwoComparisonsToRangeCheck" enabled="false" level="WEAK WARNING" enabled_by_default="false" />
+     <inspection_tool class="GlancePreviewDimensionRespectsLimit" enabled="true" level="WARNING" enabled_by_default="true">
+       <option name="composableFile" value="true" />
+     </inspection_tool>
+@@ -60,5 +62,7 @@
+       <option name="composableFile" value="true" />
+       <option name="previewFile" value="true" />
+     </inspection_tool>
++    <inspection_tool class="SameParameterValue" enabled="false" level="WARNING" enabled_by_default="false" />
++    <inspection_tool class="UnnecessaryVariable" enabled="false" level="WEAK WARNING" enabled_by_default="false" />
+   </profile>
+ </component>
+\ No newline at end of file
+diff --git a/.idea/misc.xml b/.idea/misc.xml
+index b6b0347..c280ce8 100644
+--- a/.idea/misc.xml
++++ b/.idea/misc.xml
+@@ -1,8 +1,7 @@
+ <project version="4">
+   <component name="EntryPointsManager">
+-    <list size="2">
+-      <item index="0" class="java.lang.String" itemvalue="androidx.compose.runtime.Composable" />
+-      <item index="1" class="java.lang.String" itemvalue="kotlinx.serialization.Serializable" />
++    <list size="1">
++      <item index="0" class="java.lang.String" itemvalue="kotlinx.serialization.Serializable" />
+     </list>
+   </component>
+   <component name="ExternalStorageConfigurationManager" enabled="true" />
+diff --git a/README-EN.md b/README-EN.md
+index d29b69d..c38aba0 100644
+--- a/README-EN.md
++++ b/README-EN.md
+@@ -1,5 +1,4 @@
+ <!--suppress ALL -->
+-
+ <p align="center">
+   <img src="resources/logo.svg" width="100" alt="Lyricon Logo"/>
+ </p>
+@@ -7,7 +6,7 @@
+ <h1 align="center">Lyricon</h1>
+ 
+ <p align="center">
+-  <b>An Android status bar lyric enhancement tool based on the Xposed framework</b>
++  <b>An Xposed-based Status Bar Lyric Enhancement Tool for Android</b>
+ </p>
+ 
+ <p align="center">
+@@ -31,11 +30,11 @@
+ 
+ ## ✨ Features
+ 
+-- 🎤 **Lyric Display** — Supports word-by-word lyrics, translated lyrics, and duet mode.
+-- 🧩 **Modular Design** — Supports extending lyric sources for different music players through an
+-  independent plugin system.
+-- 🎨 **Visual Customization** — Supports adjusting font styles, logo display, coordinate offsets, and
+-  animation effects.
++- 🎤 **Lyric Display** — Supports word-by-word lyrics, translations, and duet modes.
++- 🧩 **Modular Design** — Extend lyric sources for various players through an independent plugin
++  system.
++- 🎨 **Visual Customization** — Adjust font styles, logos, coordinate offsets, and animations to fit
++  your UI.
+ 
+ ---
+ 
+@@ -43,51 +42,44 @@
+ 
+ ### 📋 Requirements
+ 
+-- **System Version**: Android 9.0 (API 28) or later.
+-- **Prerequisites**: The device must have **Root** access and the **LSPosed** framework, or a
+-  compatible Xposed framework, installed.
++- **System**: Android 8.1 (API 27) or higher.
++- **Prerequisites**: Device must be **Rooted** with the **LSPosed** (or compatible Xposed) framework
++  installed.
+ 
+ > [!TIP]
+-> For better stability, the latest stable version of LSPosed is recommended.
++> It is recommended to use the latest stable version of LSPosed for optimal compatibility.
+ 
+-### ⚙️ Installation & Configuration
++### ⚙️ Installation & Setup
+ 
+-1. **Download the Main App**: Download and install Lyricon
++1. **Download Main App**: Get the Lyricon app
+    from [Releases](https://github.com/tomakino/lyricon/releases).
+-2. **Activate the Module**: Enable the "Lyricon" module in LSPosed Manager and select the **System
+-   UI** scope.
+-3. **Restart to Apply**: Restart System UI or reboot the device to complete Hook injection.
+-4. **Install Plugins**: Download the corresponding plugin
+-   from [LyricProvider](https://github.com/tomakino/LyricProvider) according to the music player you
+-   use.
+-5. **Adjust Parameters**: Open the Lyricon app and adjust the position anchor, width, and visual
+-   style according to your screen.
+-6. **Test It**: Launch your music player and play music, then check whether lyrics are displayed
+-   correctly in the status bar.
++2. **Activate Module**: Enable "Lyricon" in the LSPosed manager and ensure the **System UI** scope
++   is checked.
++3. **Apply Changes**: Restart System UI or reboot your device to complete the Hook injection.
++4. **Install Plugins**: Download the corresponding plugin for your music player
++   from [LyricProvider](https://github.com/tomakino/LyricProvider).
++5. **Configuration**: Open the Lyricon app to adjust position anchors, width, and visual styles.
++6. **Enjoy**: Play music and check your status bar for live lyrics.
+ 
+ ---
+ 
+ ## 🧩 Ecosystem & Support
+ 
+-| Category           | Resource Link                                                         | Description                                       |
+-|:-------------------|:----------------------------------------------------------------------|:--------------------------------------------------|
+-| **Plugin Library** | [LyricProvider Repository](https://github.com/tomakino/LyricProvider) | Adaptation plugins for mainstream music platforms |
+-| **Documentation**  | [Documentation Center](https://tomakino.github.io/lyricon/)           | App and Lyric documentation                       |
++| Category           | Links                                                                                                      | Description                                 |
++|:-------------------|:-----------------------------------------------------------------------------------------------------------|:--------------------------------------------|
++| **Plugin Library** | [LyricProvider Repo](https://github.com/tomakino/LyricProvider)                                            | Plugins for mainstream music platforms      |
++| **Development**    | [Dev Guide](https://github.com/tomakino/lyricon/blob/master/lyric/bridge/provider/README-EN.md)            | Learn how to build lyric provider plugins   |
++| **Subscription**   | [Subscription Guide](https://github.com/tomakino/lyricon/blob/master/lyric/bridge/subscriber/README-EN.md) | Methods for 3rd-party apps to access lyrics |
+ 
+-### 💡 Natively Supported Apps
++### 💡 Native Support Apps
+ 
+-- [**光锥音乐**](https://coneplayer.trantor.ink/)
++- [**ConePlayer**](https://coneplayer.trantor.ink/)
+ - **Flamingo**
+ - [**BBPlayer**](https://bbplayer.roitium.com/)
+ - **MobiMusic**
+ - [**Kanade**](https://github.com/rcmiku/Kanade)
+ - **Sollin Player**
+ - [**QZ Music**](https://github.com/lqtmcstudio/QZMusic)
+-- [**棉花音乐**](https://github.com/pure-music/PureMusic)
+-- [**Smart Music Next**](https://qun.qq.com/universal-share/share?ac=1&authKey=k1hftnugk%2Bx5FZnOePE2RTS%2ByBftX2E87Trhz59sfxtVtvC3nw1MXnlxycVUIPZw&busi_data=eyJncm91cENvZGUiOiIzMzA0NzM2OTYiLCJ0b2tlbiI6IlB0NWpkSW0zWTA0UXBCTHFFdjZ0SDBsN014aUVnTitxMllFUnlMV0JpdTJEem1sdDBvRWZEM2p0RXJGVUFpZTgiLCJ1aW4iOiIyOTIwNTMzMzczIn0%3D&data=388N05tm4gkrgDLeoysN-LIYOHsCk5mUfrcBBVE9UW3WyoWG_DxkLZqDttvrptZWN5VOQWvYBwZ7d3MgKUDmTg&svctype=4&tempid=h5_group_info)
+-- [**LunaBeat**](https://github.com/2755337087/LunaBeat)
+-
+-#### Is your player already supported but not listed here? Please [submit an issue](https://github.com/tomakino/lyricon/issues).
+ 
+ ---
+ 
+@@ -111,8 +103,8 @@
+ 
+ ---
+ 
+-### 👀 Visit Statistics
++### 👀 Traffic
+ 
+ <p align="center">
+   <img src="https://count.getloli.com/get/@tomakino_lyricon?theme=minecraft" alt="Visitor Count" />
+-</p>
++</p>
+\ No newline at end of file
+diff --git a/README.md b/README.md
+index b0a7d2e..48dc6f3 100644
+--- a/README.md
++++ b/README.md
+@@ -61,10 +61,11 @@
+ 
+ ## 🧩 生态与支持
+ 
+-| 类别       | 资源链接                                                          | 说明             |
+-|:---------|:--------------------------------------------------------------|:---------------|
+-| **插件库**  | [LyricProvider 仓库](https://github.com/tomakino/LyricProvider) | 包含主流音乐平台的适配插件  |
+-| **开发文档** | [文档中心](https://tomakino.github.io/lyricon/)                   | App 与 Lyric 文档 |
++| 类别       | 资源链接                                                                                      | 说明              |
++|:---------|:------------------------------------------------------------------------------------------|:----------------|
++| **插件库**  | [LyricProvider 仓库](https://github.com/tomakino/LyricProvider)                             | 包含主流音乐平台的适配插件   |
++| **开发插件** | [开发指南](https://github.com/tomakino/lyricon/blob/master/lyric/bridge/provider/README.md)   | 了解如何开发自定义歌词提供插件 |
++| **订阅接口** | [订阅指南](https://github.com/tomakino/lyricon/blob/master/lyric/bridge/subscriber/README.md) | 第三方应用接入词幕歌词的方法  |
+ 
+ ### 💡 已原生适配的应用
+ 
+@@ -75,9 +76,6 @@
+ - [**Kanade**](https://github.com/rcmiku/Kanade)
+ - **Sollin Player**
+ - [**QZ Music**](https://github.com/lqtmcstudio/QZMusic)
+-- [**棉花音乐**](https://github.com/pure-music/PureMusic)
+-- [**Smart Music Next**](https://qun.qq.com/universal-share/share?ac=1&authKey=k1hftnugk%2Bx5FZnOePE2RTS%2ByBftX2E87Trhz59sfxtVtvC3nw1MXnlxycVUIPZw&busi_data=eyJncm91cENvZGUiOiIzMzA0NzM2OTYiLCJ0b2tlbiI6IlB0NWpkSW0zWTA0UXBCTHFFdjZ0SDBsN014aUVnTitxMllFUnlMV0JpdTJEem1sdDBvRWZEM2p0RXJGVUFpZTgiLCJ1aW4iOiIyOTIwNTMzMzczIn0%3D&data=388N05tm4gkrgDLeoysN-LIYOHsCk5mUfrcBBVE9UW3WyoWG_DxkLZqDttvrptZWN5VOQWvYBwZ7d3MgKUDmTg&svctype=4&tempid=h5_group_info)
+-- [**LunaBeat**](https://github.com/2755337087/LunaBeat)
+ 
+ #### 已适配了但没有你的播放器？请[提交 issue](https://github.com/tomakino/lyricon/issues)。
+ 
+diff --git a/app/src/main/kotlin/io/github/proify/lyricon/app/ForkPreferenceMigration.kt b/app/src/main/kotlin/io/github/proify/lyricon/app/ForkPreferenceMigration.kt
+new file mode 100644
+index 0000000..c8e75f0
+--- /dev/null
++++ b/app/src/main/kotlin/io/github/proify/lyricon/app/ForkPreferenceMigration.kt
+@@ -0,0 +1,59 @@
++package io.github.proify.lyricon.app
++
++import android.content.Context
++import android.content.SharedPreferences
++import io.github.libxposed.service.XposedService
++import io.github.proify.android.extensions.toJson
++import io.github.proify.android.extensions.fromJson
++import io.github.proify.lyricon.lyric.style.VisibilityRule
++import io.github.proify.lyricon.lyric.style.BasicStyle
++import java.io.File
++
++/** Import tested fork settings before exposing the upstream preference service to the UI. */
++object ForkPreferenceMigration {
++    fun migrate(context: Context, service: XposedService) {
++        val marker = context.getSharedPreferences("fork_migrations", Context.MODE_PRIVATE)
++        if (marker.getBoolean("upstream_remote_v1", false)) return
++        val files = File(context.applicationInfo.dataDir, "shared_prefs").listFiles().orEmpty()
++        val names = files.map { it.name.removeSuffix(".xml") }.filter { !it.endsWith(".bak") }
++        for (name in names) {
++            val destination = when {
++                name == "baseLyricStyle" -> "lyricon_style_base"
++                name == "packageStyleManager" -> "lyricon_style_package_manager"
++                name.startsWith("package_style_") -> name.replaceFirst("package_style_", "lyricon_style_app_")
++                name == context.packageName + "_preferences" -> "default"
++                name.startsWith("lyricon_style_") -> name
++                else -> continue
++            }
++            val source = context.getSharedPreferences(name, Context.MODE_PRIVATE)
++            val target = service.getRemotePreferences(destination)
++            val existing = target.all
++            val editor = target.edit()
++            for ((key, value) in source.all) {
++                if (key in existing) continue
++                when (value) {
++                    is String -> {
++                        val imported = if (name == "baseLyricStyle" && key == "lyric_style_base_visibility_rules") {
++                            value.fromJson<List<VisibilityRule>>()?.map {
++                                if (it.mode == 3) it.copy(mode = VisibilityRule.MODE_HIDE_WHEN_PLAYING) else it
++                            }?.toJson() ?: value
++                        } else value
++                        editor.putString(key, imported)
++                    }
++                    is Boolean -> editor.putBoolean(key, value)
++                    is Int -> editor.putInt(key, value)
++                    is Long -> editor.putLong(key, value)
++                    is Float -> editor.putFloat(key, value)
++                    is Set<*> -> editor.putStringSet(key, value.filterIsInstance<String>().toSet())
++                }
++            }
++            check(editor.commit()) { "Preference import failed: $destination" }
++        }
++        val basic = service.getRemotePreferences("lyricon_style_base")
++        val rules = basic.getString("lyric_style_base_visibility_rules", null)
++        if (rules.isNullOrBlank() || rules.trim() == "[]") {
++            check(basic.edit().putString("lyric_style_base_visibility_rules", BasicStyle.Defaults.VISIBILITY_RULES.toJson()).commit())
++        }
++        marker.edit().putBoolean("upstream_remote_v1", true).apply()
++    }
++}
+diff --git a/app/src/main/kotlin/io/github/proify/lyricon/app/LyriconApp.kt b/app/src/main/kotlin/io/github/proify/lyricon/app/LyriconApp.kt
+index 353fec1..dfc8463 100644
+--- a/app/src/main/kotlin/io/github/proify/lyricon/app/LyriconApp.kt
++++ b/app/src/main/kotlin/io/github/proify/lyricon/app/LyriconApp.kt
+@@ -30,6 +30,8 @@ class LyriconApp : Application() {
+         XposedServiceHelper.registerListener(object : XposedServiceHelper.OnServiceListener {
+             override fun onServiceBind(service: XposedService) {
+                 Log.i(TAG, "XposedService bind")
++                runCatching { ForkPreferenceMigration.migrate(this@LyriconApp, service) }
++                    .onFailure { Log.e(TAG, "Fork settings migration failed; will retry on next bind", it) }
+                 xposedService = service
+                 xposedServiceStateListeners.forEach {
+                     it.onServiceStateChanged(service)
+diff --git a/app/src/main/kotlin/io/github/proify/lyricon/app/activity/lyric/BasicStyleActivity.kt b/app/src/main/kotlin/io/github/proify/lyricon/app/activity/lyric/BasicStyleActivity.kt
+index abc21b6..f520d4f 100644
+--- a/app/src/main/kotlin/io/github/proify/lyricon/app/activity/lyric/BasicStyleActivity.kt
++++ b/app/src/main/kotlin/io/github/proify/lyricon/app/activity/lyric/BasicStyleActivity.kt
+@@ -406,7 +406,8 @@ class BasicLyricStyleActivity : AbstractLyricActivity() {
+             LyricGesturePrefs.ACTION_TOGGLE_PLAY,
+             LyricGesturePrefs.ACTION_PREVIOUS,
+             LyricGesturePrefs.ACTION_NEXT,
+-            LyricGesturePrefs.ACTION_OPEN_CONTROL
++            LyricGesturePrefs.ACTION_OPEN_CONTROL,
++            LyricGesturePrefs.ACTION_SHOW_CLOCK
+         )
+ 
+         val optionItems = listOf(
+@@ -415,6 +416,7 @@ class BasicLyricStyleActivity : AbstractLyricActivity() {
+             DropdownItem(title = stringResource(R.string.option_gesture_previous)),
+             DropdownItem(title = stringResource(R.string.option_gesture_next)),
+             DropdownItem(title = stringResource(R.string.option_gesture_open_control)),
++            DropdownItem(title = stringResource(R.string.option_gesture_show_clock)),
+         )
+ 
+         val current = preferences.getInt(key, default)
+diff --git a/app/src/main/kotlin/io/github/proify/lyricon/app/util/LyricPrefs.kt b/app/src/main/kotlin/io/github/proify/lyricon/app/util/LyricPrefs.kt
+index 28a1c2e..400609e 100644
+--- a/app/src/main/kotlin/io/github/proify/lyricon/app/util/LyricPrefs.kt
++++ b/app/src/main/kotlin/io/github/proify/lyricon/app/util/LyricPrefs.kt
+@@ -22,8 +22,8 @@ object LyricPrefs {
+ 
+     const val DEFAULT_PACKAGE_NAME: String = LyricStylePrefs.DEFAULT_PACKAGE_NAME
+ 
+-    private val packageStyleManager: SharedPreferences =
+-        getSharedPreferences(LyricStylePrefs.PREF_NAME_PACKAGE_MANAGER)
++    private val packageStyleManager: SharedPreferences
++        get() = getSharedPreferences(LyricStylePrefs.PREF_NAME_PACKAGE_MANAGER)
+ 
+     val basicStylePrefs: SharedPreferences
+         get() = getSharedPreferences(LyricStylePrefs.PREF_NAME_BASE)
+@@ -87,6 +87,6 @@ object LyricPrefs {
+ 
+     fun getViewVisibilityRule(): List<VisibilityRule> {
+         val json = basicStylePrefs.getString("lyric_style_base_visibility_rules", null)
+-        return json?.fromJson<List<VisibilityRule>>() ?: emptyList()
++        return json?.fromJson<List<VisibilityRule>>() ?: io.github.proify.lyricon.lyric.style.BasicStyle.Defaults.VISIBILITY_RULES
+     }
+ }
+\ No newline at end of file
+diff --git a/app/src/main/res/values-b+zh+Hant/fork_strings.xml b/app/src/main/res/values-b+zh+Hant/fork_strings.xml
+new file mode 100644
+index 0000000..d241a6c
+--- /dev/null
++++ b/app/src/main/res/values-b+zh+Hant/fork_strings.xml
+@@ -0,0 +1 @@
++<resources><string name="option_gesture_show_clock">顯示時鐘</string></resources>
+diff --git a/app/src/main/res/values-zh-rCN/fork_strings.xml b/app/src/main/res/values-zh-rCN/fork_strings.xml
+new file mode 100644
+index 0000000..761dc29
+--- /dev/null
++++ b/app/src/main/res/values-zh-rCN/fork_strings.xml
+@@ -0,0 +1 @@
++<resources><string name="option_gesture_show_clock">显示时钟</string></resources>
+diff --git a/app/src/main/res/values/fork_strings.xml b/app/src/main/res/values/fork_strings.xml
+new file mode 100644
+index 0000000..4e4a58b
+--- /dev/null
++++ b/app/src/main/res/values/fork_strings.xml
+@@ -0,0 +1 @@
++<resources><string name="option_gesture_show_clock">Show clock</string></resources>
+diff --git a/archive/unreferenced-upstream/README.md b/archive/unreferenced-upstream/README.md
+new file mode 100644
+index 0000000..f39fb91
+--- /dev/null
++++ b/archive/unreferenced-upstream/README.md
+@@ -0,0 +1 @@
++这些文件是当前 fork 回退旧渲染/UI 实现后保留的上游残留，未被当前运行路径引用，但依赖已移除的属性、组件或 miuix blur API，导致干净检出不能编译。保留在编译目录之外供后续整合；当前实际使用的 SuperLogo、AI 设置页和背景组件未改动。
+diff --git a/archive/unreferenced-upstream/app/src/main/kotlin/io/github/proify/lyricon/app/activity/lyric/AiTranslationPreference.kt b/archive/unreferenced-upstream/app/src/main/kotlin/io/github/proify/lyricon/app/activity/lyric/AiTranslationPreference.kt
+new file mode 100644
+index 0000000..acf7410
+--- /dev/null
++++ b/archive/unreferenced-upstream/app/src/main/kotlin/io/github/proify/lyricon/app/activity/lyric/AiTranslationPreference.kt
+@@ -0,0 +1,475 @@
++/*
++ * Copyright 2026 Proify, Tomakino
++ * Licensed under the Apache License, Version 2.0
++ * http://www.apache.org/licenses/LICENSE-2.0
++ */
++
++package io.github.proify.lyricon.app.activity.lyric
++
++import android.content.SharedPreferences
++import androidx.compose.foundation.layout.Arrangement
++import androidx.compose.foundation.layout.Column
++import androidx.compose.foundation.layout.PaddingValues
++import androidx.compose.foundation.layout.Row
++import androidx.compose.foundation.layout.Spacer
++import androidx.compose.foundation.layout.fillMaxWidth
++import androidx.compose.foundation.layout.height
++import androidx.compose.foundation.layout.padding
++import androidx.compose.foundation.layout.width
++import androidx.compose.foundation.lazy.LazyColumn
++import androidx.compose.foundation.lazy.itemsIndexed
++import androidx.compose.runtime.Composable
++import androidx.compose.runtime.getValue
++import androidx.compose.runtime.mutableStateOf
++import androidx.compose.runtime.remember
++import androidx.compose.runtime.setValue
++import androidx.compose.ui.Modifier
++import androidx.compose.ui.platform.LocalLocale
++import androidx.compose.ui.res.painterResource
++import androidx.compose.ui.res.stringResource
++import androidx.compose.ui.unit.DpSize
++import androidx.compose.ui.unit.dp
++import io.github.proify.lyricon.app.LyriconApp
++import io.github.proify.lyricon.app.R
++import io.github.proify.lyricon.app.bridge.AppBridgeConstants
++import io.github.proify.lyricon.app.bridge.LyriconBridge
++import io.github.proify.lyricon.app.compose.IconActions
++import io.github.proify.lyricon.app.compose.custom.miuix.extra.OverlayDialog
++import io.github.proify.lyricon.app.compose.custom.miuix.preference.CheckboxPreference
++import io.github.proify.lyricon.app.compose.preference.StringInputPreference
++import io.github.proify.lyricon.app.compose.preference.rememberBooleanPreference
++import io.github.proify.lyricon.app.compose.preference.rememberStringPreference
++import io.github.proify.lyricon.common.PackageNames
++import io.github.proify.lyricon.lyric.style.TextStyle
++import top.yukonga.miuix.kmp.basic.ButtonDefaults
++import top.yukonga.miuix.kmp.basic.Card
++import top.yukonga.miuix.kmp.basic.Icon
++import top.yukonga.miuix.kmp.basic.IconButton
++import top.yukonga.miuix.kmp.basic.InputField
++import top.yukonga.miuix.kmp.basic.SearchBar
++import top.yukonga.miuix.kmp.basic.SmallTitle
++import top.yukonga.miuix.kmp.basic.TextButton
++import top.yukonga.miuix.kmp.icon.MiuixIcons
++import top.yukonga.miuix.kmp.icon.extended.Search
++import top.yukonga.miuix.kmp.preference.SwitchPreference
++import top.yukonga.miuix.kmp.theme.LocalDismissState
++import top.yukonga.miuix.kmp.theme.MiuixTheme
++import top.yukonga.miuix.kmp.utils.overScrollVertical
++import top.yukonga.miuix.kmp.window.WindowBottomSheet
++import java.text.Collator
++import java.util.Locale
++
++/**
++ * AI 歌词翻译（功能级配置）。
++ *
++ * 连接类配置（API Key / Base URL / Model / 高级参数）统一在 [AiBasicConfigPreference] 管理，
++ * 所有 AI 功能共用；这里只保留翻译功能自身的选项。
++ *
++ * @author Tomakino
++ * @since 2026
++ */
++@Composable
++fun AiTranslationPreference(preferences: SharedPreferences) {
++    var isAiTranslationEnabled by rememberBooleanPreference(
++        sharedPreferences = preferences,
++        key = TextStyle.KEY_AI_TRANSLATION_ENABLED,
++        defaultValue = TextStyle.Defaults.AI_TRANSLATION_ENABLED
++    )
++    SwitchPreference(
++        checked = isAiTranslationEnabled,
++        onCheckedChange = { isAiTranslationEnabled = it },
++        title = stringResource(R.string.item_translation_ai_enable),
++        startAction = { IconActions(painterResource(R.drawable.translate_24px)) },
++    )
++
++    var isAiTranslationAutoIgnoreChinese by rememberBooleanPreference(
++        sharedPreferences = preferences,
++        key = TextStyle.KEY_AI_TRANSLATION_IGNORE_CHINESE,
++        defaultValue = TextStyle.Defaults.AI_TRANSLATION_IGNORE_CHINESE
++    )
++    SwitchPreference(
++        checked = isAiTranslationAutoIgnoreChinese,
++        onCheckedChange = { isAiTranslationAutoIgnoreChinese = it },
++        title = stringResource(R.string.item_translation_auto_ignore_chinese),
++        summary = stringResource(R.string.item_translation_auto_ignore_chinese_summary),
++        startAction = { IconActions(painterResource(R.drawable.translate_24px)) },
++    )
++
++    TranslationTargetLanguagePreference(preferences)
++
++    StringInputPreference(
++        preferences = preferences,
++        key = TextStyle.KEY_AI_TRANSLATION_PROMPT,
++        title = stringResource(R.string.item_translation_custom_prompt),
++        dialogSummary = stringResource(R.string.dialog_summary_translation_custom_prompt),
++        defaultValue = TextStyle.Defaults.AI_TRANSLATION_PROMPT,
++        startAction = { IconActions(painterResource(R.drawable.title_24px)) },
++    )
++
++    ClearTranslationDB()
++}
++
++@Composable
++private fun ClearTranslationDB() {
++    val showDialog = remember { mutableStateOf(false) }
++    OverlayDialog(
++        title = stringResource(R.string.alert_dialog_title_translation_clear),
++        summary = stringResource(R.string.alert_dialog_message_translation_clear),
++        show = showDialog.value,
++        onDismissRequest = { showDialog.value = false }
++    ) {
++        Row(
++            modifier = Modifier.fillMaxWidth(),
++            horizontalArrangement = Arrangement.SpaceBetween
++        ) {
++            TextButton(
++                text = stringResource(id = R.string.cancel),
++                onClick = { showDialog.value = false },
++                modifier = Modifier.weight(1f)
++            )
++            Spacer(modifier = Modifier.width(20.dp))
++            TextButton(
++                colors = ButtonDefaults.textButtonColorsPrimary(),
++                text = stringResource(id = R.string.yes),
++                onClick = {
++                    showDialog.value = false
++                    LyriconBridge.with(LyriconApp.get())
++                        .to(PackageNames.SYSTEM_UI)
++                        .key(AppBridgeConstants.REQUEST_CLEAR_TRANSLATION_DB)
++                        .send()
++                },
++                modifier = Modifier.weight(1f),
++            )
++        }
++
++    }
++    ArrowPreferenceCompat(
++        title = stringResource(R.string.item_translation_clear_db),
++        startAction = { IconActions(painterResource(R.drawable.ic_settings_backup_restore)) },
++        onClick = {
++            showDialog.value = true
++        }
++    )
++}
++
++@Composable
++private fun ArrowPreferenceCompat(
++    title: String,
++    startAction: (@Composable () -> Unit)? = null,
++    onClick: () -> Unit,
++) {
++    top.yukonga.miuix.kmp.preference.ArrowPreference(
++        title = title,
++        startAction = startAction,
++        onClick = onClick,
++    )
++}
++
++@Composable
++private fun TranslationTargetLanguagePreference(preferences: SharedPreferences) {
++    val targetLanguageName = TextStyle.Defaults.AI_TRANSLATION_TARGET_LANGUAGE_DISPLAY_NAME
++    var showLanguageSheet by remember { mutableStateOf(false) }
++    @Suppress("VariableNeverRead") var targetLanguage by rememberStringPreference(
++        preferences,
++        TextStyle.KEY_AI_TRANSLATION_TARGET_LANGUAGE,
++        targetLanguageName
++    )
++    var targetLanguageCode by rememberStringPreference(
++        preferences,
++        TextStyle.KEY_AI_TRANSLATION_TARGET_LANGUAGE_CODE,
++        ""
++    )
++
++    StringInputPreference(
++        preferences = preferences,
++        key = TextStyle.KEY_AI_TRANSLATION_TARGET_LANGUAGE,
++        defaultValue = targetLanguageName,
++        title = stringResource(R.string.item_translation_target_language),
++        dialogSummary = stringResource(R.string.dialog_summary_translation_target_language),
++        startAction = { IconActions(painterResource(R.drawable.ic_language)) },
++        endActions = {
++            IconButton(onClick = { showLanguageSheet = true }) {
++                Icon(
++                    painter = painterResource(R.drawable.list_24px),
++                    contentDescription = stringResource(R.string.dialog_title_translation_languages)
++                )
++            }
++        }
++    )
++
++    if (showLanguageSheet) {
++        val displayLocale = LocalLocale.current.platformLocale
++        val languageGroups =
++            remember(displayLocale) { buildTranslationLanguageGroups(displayLocale) }
++        var query by remember { mutableStateOf("") }
++        var selectedLanguageCode by remember { mutableStateOf<String?>(null) }
++        val filteredLanguageGroups = remember(languageGroups, query) {
++            filterTranslationLanguageGroups(languageGroups, query)
++        }
++        val selectedLanguageGroup = remember(languageGroups, selectedLanguageCode) {
++            languageGroups.firstOrNull { it.languageCode == selectedLanguageCode }
++        }
++
++        var isExpanded by remember { mutableStateOf(false) }
++
++        WindowBottomSheet(
++            show = showLanguageSheet,
++            title = stringResource(R.string.dialog_title_translation_languages),
++            onDismissRequest = { showLanguageSheet = false },
++            backgroundColor = MiuixTheme.colorScheme.surface,
++            insideMargin = DpSize(0.dp, 0.dp),
++            enableNestedScroll = false
++        ) {
++            val dismiss = LocalDismissState.current
++
++            Column(
++                modifier = Modifier.fillMaxWidth(),
++            ) {
++
++                SearchBar(
++                    inputField = {
++                        InputField(
++                            query = query,
++                            onQueryChange = { query = it },
++                            label = stringResource(R.string.hint_search),
++                            modifier = Modifier
++                                .padding(horizontal = 10.dp, vertical = 0.dp)
++                                .fillMaxWidth(),
++                            leadingIcon = {
++                                Icon(
++                                    modifier = Modifier.padding(start = 12.dp, end = 8.dp),
++                                    imageVector = MiuixIcons.Search,
++                                    contentDescription = stringResource(R.string.action_search),
++                                    tint = MiuixTheme.colorScheme.onSurfaceVariantSummary,
++                                )
++                            },
++                            onSearch = {
++                                isExpanded = false
++                            },
++                            expanded = isExpanded,
++                            onExpandedChange = {
++                                isExpanded = it
++                            },
++                        )
++                    },
++                    onExpandedChange = {
++                        isExpanded = it
++                    },
++                ) {}
++                Spacer(modifier = Modifier.height(10.dp))
++
++                LazyColumn(
++                    modifier = Modifier
++                        .fillMaxWidth()
++                        .overScrollVertical()
++                ) {
++
++
++                    if (query.isBlank()) {
++                        itemsIndexed(
++                            items = languageGroups,
++                            key = { _, group -> "language_${group.languageCode}" }
++                        ) { _, group ->
++                            Card(
++                                modifier = Modifier
++                                    .padding(start = 16.dp, top = 0.dp, end = 16.dp, bottom = 16.dp)
++                                    .fillMaxWidth()
++                            ) {
++                                top.yukonga.miuix.kmp.preference.ArrowPreference(
++                                    title = group.name,
++                                    summary = group.options
++                                        .drop(1)
++                                        .take(3)
++                                        .joinToString(" / ") { it.name }
++                                        .takeIf { it.isNotBlank() },
++                                    onClick = { selectedLanguageCode = group.languageCode }
++                                )
++                            }
++                        }
++                    } else {
++                        filteredLanguageGroups.forEach { group ->
++                            item(key = "language_group_${group.languageCode}") {
++                                SmallTitle(
++                                    text = group.name,
++                                    insideMargin = PaddingValues(
++                                        start = 26.dp,
++                                        end = 26.dp,
++                                        bottom = 10.dp
++                                    )
++                                )
++                            }
++
++                            itemsIndexed(
++                                items = group.options,
++                                key = { _, option -> option.code }
++                            ) { _, option ->
++                                TranslationLanguageOptionPreference(
++                                    option = option,
++                                    checked = targetLanguageCode == option.code,
++                                    onClick = {
++                                        targetLanguage = option.applyLanguage
++                                        targetLanguageCode = option.code
++                                        dismiss?.invoke()
++                                    }
++                                )
++                            }
++                        }
++                    }
++                }
++            }
++        }
++
++        if (selectedLanguageGroup != null) {
++            WindowBottomSheet(
++                show = true,
++                title = selectedLanguageGroup.name,
++                onDismissRequest = { selectedLanguageCode = null },
++                backgroundColor = MiuixTheme.colorScheme.surface,
++                insideMargin = DpSize(0.dp, 0.dp),
++            ) {
++                val dismiss = LocalDismissState.current
++                LazyColumn(
++                    modifier = Modifier
++                        .fillMaxWidth()
++                        .overScrollVertical()
++                ) {
++                    itemsIndexed(
++                        items = selectedLanguageGroup.options,
++                        key = { _, option -> option.code }
++                    ) { _, option ->
++                        TranslationLanguageOptionPreference(
++                            option = option,
++                            checked = targetLanguageCode == option.code,
++                            onClick = {
++                                targetLanguage = option.applyLanguage
++                                targetLanguageCode = option.code
++                                selectedLanguageCode = null
++                                dismiss?.invoke()
++                            }
++                        )
++                    }
++                }
++            }
++        }
++    }
++}
++
++@Composable
++private fun TranslationLanguageOptionPreference(
++    option: TranslationLanguageOption,
++    checked: Boolean,
++    onClick: () -> Unit,
++) {
++    Card(
++        modifier = Modifier
++            .padding(start = 16.dp, top = 0.dp, end = 16.dp, bottom = 16.dp)
++            .fillMaxWidth()
++    ) {
++        CheckboxPreference(
++            title = option.name,
++            checked = checked,
++            onCheckedChange = { onClick() }
++        )
++    }
++}
++
++private fun buildTranslationLanguageGroups(displayLocale: Locale): List<TranslationLanguageGroup> {
++    val collator = Collator.getInstance(displayLocale)
++    return systemLanguageTags()
++        .asSequence()
++        .map { Locale.forLanguageTag(it) }
++        .filter { locale -> locale.language.isNotBlank() && locale.language != "und" }
++        .distinctBy { it.toLanguageTag() }
++        .map { locale ->
++            val languageName = locale.getDisplayLanguage(displayLocale).replaceFirstChar {
++                if (it.isLowerCase()) it.titlecase(displayLocale) else it.toString()
++            }
++            val name = locale.getDisplayName(displayLocale).replaceFirstChar {
++                if (it.isLowerCase()) it.titlecase(displayLocale) else it.toString()
++            }
++            val nativeName = locale.getDisplayName(locale).replaceFirstChar {
++                if (it.isLowerCase()) it.titlecase(locale) else it.toString()
++            }
++            val englishName = locale.getDisplayName(Locale.ENGLISH).replaceFirstChar {
++                if (it.isLowerCase()) it.titlecase(Locale.ENGLISH) else it.toString()
++            }
++            TranslationLanguageOption(
++                code = locale.toLanguageTag(),
++                languageCode = locale.language,
++                languageName = languageName,
++                name = name,
++                nativeName = nativeName.takeIf { it.isNotBlank() && it != name },
++                englishName = englishName.takeIf { it.isNotBlank() && it != name }
++            )
++        }
++        .groupBy { it.languageCode }
++        .map { (languageCode, options) ->
++            TranslationLanguageGroup(
++                languageCode = languageCode,
++                name = options.first().languageName,
++                options = options.sortedWith { left, right ->
++                    collator.compare(
++                        left.name,
++                        right.name
++                    )
++                }
++            )
++        }
++        .sortedWith { left, right -> collator.compare(left.name, right.name) }
++        .toList()
++}
++
++private fun systemLanguageTags(): List<String> {
++    val systemLocaleTags = Locale.getAvailableLocales()
++        .map { it.toLanguageTag() }
++        .asSequence()
++        .map { it.replace('_', '-') }
++        .filter { it.isNotBlank() }
++        .toList()
++
++    return systemLocaleTags
++}
++
++private fun filterTranslationLanguageGroups(
++    groups: List<TranslationLanguageGroup>,
++    query: String
++): List<TranslationLanguageGroup> {
++    val normalizedQuery = query.trim().lowercase(Locale.ROOT)
++    if (normalizedQuery.isBlank()) return groups
++
++    return groups.mapNotNull { group ->
++        if (group.searchText.contains(normalizedQuery)) {
++            group
++        } else {
++            val options = group.options.filter { it.searchText.contains(normalizedQuery) }
++            if (options.isEmpty()) null else group.copy(options = options)
++        }
++    }
++}
++
++private data class TranslationLanguageGroup(
++    val languageCode: String,
++    val name: String,
++    val options: List<TranslationLanguageOption>,
++) {
++    val searchText: String = listOf(languageCode, name)
++        .joinToString(" ")
++        .lowercase(Locale.ROOT)
++}
++
++private data class TranslationLanguageOption(
++    val code: String,
++    val languageCode: String,
++    val languageName: String,
++    val name: String,
++    val nativeName: String?,
++    val englishName: String?,
++) {
++
++    val applyLanguage = name
++
++    val searchText: String =
++        listOfNotNull(code, languageCode, languageName, name, nativeName, englishName)
++            .joinToString(" ")
++            .lowercase(Locale.ROOT)
++}
+diff --git a/archive/unreferenced-upstream/app/src/main/kotlin/io/github/proify/lyricon/app/compose/effect/BgEffectBackground.kt b/archive/unreferenced-upstream/app/src/main/kotlin/io/github/proify/lyricon/app/compose/effect/BgEffectBackground.kt
+new file mode 100644
+index 0000000..8bc1ff7
+--- /dev/null
++++ b/archive/unreferenced-upstream/app/src/main/kotlin/io/github/proify/lyricon/app/compose/effect/BgEffectBackground.kt
+@@ -0,0 +1,109 @@
++/*
++ * Copyright 2026 Proify, Tomakino
++ * Licensed under the Apache License, Version 2.0
++ * http://www.apache.org/licenses/LICENSE-2.0
++ */
++
++package io.github.proify.lyricon.app.compose.effect
++
++import android.os.Build
++import androidx.annotation.RequiresApi
++import androidx.compose.animation.core.Animatable
++import androidx.compose.animation.core.spring
++import androidx.compose.foundation.Canvas
++import androidx.compose.foundation.isSystemInDarkTheme
++import androidx.compose.foundation.layout.Box
++import androidx.compose.foundation.layout.BoxScope
++import androidx.compose.foundation.layout.fillMaxSize
++import androidx.compose.runtime.Composable
++import androidx.compose.runtime.LaunchedEffect
++import androidx.compose.runtime.remember
++import androidx.compose.ui.Modifier
++import kotlinx.coroutines.delay
++import kotlinx.coroutines.isActive
++import top.yukonga.miuix.kmp.blur.isRuntimeShaderSupported
++import top.yukonga.miuix.kmp.theme.MiuixTheme
++
++@RequiresApi(Build.VERSION_CODES.TIRAMISU)
++@Composable
++fun BgEffectBackground(
++    dynamicBackground: Boolean,
++    modifier: Modifier = Modifier,
++    bgModifier: Modifier = Modifier,
++    effectBackground: Boolean = true,
++    alpha: () -> Float = { 1f },
++    isDark: Boolean = isSystemInDarkTheme(),
++    content: @Composable (BoxScope.() -> Unit),
++) {
++    val shaderSupported = remember { isRuntimeShaderSupported() }
++    if (!shaderSupported) {
++        Box(modifier = modifier, content = content)
++        return
++    }
++    Box(
++        modifier = modifier,
++    ) {
++        val surface = MiuixTheme.colorScheme.surface
++        val painter = remember { BgEffectPainter() }
++        val animTime = rememberFrameTimeSeconds(dynamicBackground)
++        val deviceType = DeviceType.PHONE
++
++        val preset = remember(isDark, deviceType) {
++            BgEffectConfig.get(deviceType, isDark)
++        }
++
++        val colorStage = remember { Animatable(0f) }
++
++        LaunchedEffect(dynamicBackground, preset) {
++            if (!dynamicBackground) return@LaunchedEffect
++            var targetStage = 1f
++            while (isActive) {
++                delay((preset.colorInterpPeriod * 500).toLong())
++                colorStage.animateTo(
++                    targetValue = targetStage,
++                    animationSpec = spring(dampingRatio = 0.9f, stiffness = 35f),
++                )
++                targetStage += 1f
++            }
++        }
++
++        Canvas(
++            modifier = Modifier
++                .fillMaxSize()
++                .then(bgModifier),
++        ) {
++            drawRect(surface)
++            if (effectBackground) {
++                val drawHeight = size.height * 0.78f
++
++                val stage = colorStage.value
++                val base = stage.toInt()
++                val fraction = stage - base
++
++                val getColors = { index: Int ->
++                    when (index % 4) {
++                        0 -> preset.colors2
++                        1 -> preset.colors1
++                        2 -> preset.colors2
++                        3 -> preset.colors3
++                        else -> preset.colors2
++                    }
++                }
++
++                val start = getColors(base)
++                val end = getColors(base + 1)
++                val currentColors = FloatArray(16) { i ->
++                    start[i] + (end[i] - start[i]) * fraction
++                }
++
++                painter.updateResolution(size.width, size.height)
++                painter.updatePresetIfNeeded(drawHeight, size.height, size.width, isDark)
++                painter.updateColors(currentColors)
++                painter.updateAnimTime(animTime())
++
++                drawRect(painter.brush, alpha = alpha())
++            }
++        }
++        content()
++    }
++}
+\ No newline at end of file
+diff --git a/archive/unreferenced-upstream/app/src/main/kotlin/io/github/proify/lyricon/app/compose/effect/BgEffectConfig.kt b/archive/unreferenced-upstream/app/src/main/kotlin/io/github/proify/lyricon/app/compose/effect/BgEffectConfig.kt
+new file mode 100644
+index 0000000..1718446
+--- /dev/null
++++ b/archive/unreferenced-upstream/app/src/main/kotlin/io/github/proify/lyricon/app/compose/effect/BgEffectConfig.kt
+@@ -0,0 +1,368 @@
++/*
++ * Copyright 2026 Proify, Tomakino
++ * Licensed under the Apache License, Version 2.0
++ * http://www.apache.org/licenses/LICENSE-2.0
++ */
++
++package io.github.proify.lyricon.app.compose.effect
++
++internal object BgEffectConfig {
++
++    internal class Config(
++        val points: FloatArray,
++        val colors1: FloatArray,
++        val colors2: FloatArray,
++        val colors3: FloatArray,
++        val colorInterpPeriod: Float,
++        val lightOffset: Float,
++        val saturateOffset: Float,
++        val pointOffset: Float,
++        val shadowColorMulti: Float = 0.3f,
++        val shadowColorOffset: Float = 0.3f,
++        val shadowNoiseScale: Float = 5.0f,
++    )
++
++    private val OS3_PHONE_LIGHT = Config(
++        points = floatArrayOf(
++            0.8f,
++            0.2f,
++            1.0f,
++            0.8f,
++            0.9f,
++            1.0f,
++            0.2f,
++            0.9f,
++            1.0f,
++            0.2f,
++            0.2f,
++            1.0f
++        ),
++        colors1 = floatArrayOf(
++            1.0f,
++            0.9f,
++            0.94f,
++            1.0f,
++            1.0f,
++            0.84f,
++            0.89f,
++            1.0f,
++            0.97f,
++            0.73f,
++            0.82f,
++            1.0f,
++            0.64f,
++            0.65f,
++            0.98f,
++            1.0f
++        ),
++        colors2 = floatArrayOf(
++            0.58f,
++            0.74f,
++            1.0f,
++            1.0f,
++            1.0f,
++            0.9f,
++            0.93f,
++            1.0f,
++            0.74f,
++            0.76f,
++            1.0f,
++            1.0f,
++            0.97f,
++            0.77f,
++            0.84f,
++            1.0f
++        ),
++        colors3 = floatArrayOf(
++            0.98f,
++            0.86f,
++            0.9f,
++            1.0f,
++            0.6f,
++            0.73f,
++            0.98f,
++            1.0f,
++            0.92f,
++            0.93f,
++            1.0f,
++            1.0f,
++            0.56f,
++            0.69f,
++            1.0f,
++            1.0f
++        ),
++        colorInterpPeriod = 5.0f,
++        lightOffset = 0.1f,
++        saturateOffset = 0.2f,
++        pointOffset = 0.2f,
++    )
++
++    private val OS3_PHONE_DARK = Config(
++        points = floatArrayOf(
++            0.78f,
++            0.18f,
++            1.0f,
++            0.82f,
++            0.92f,
++            1.0f,
++            0.18f,
++            0.92f,
++            1.0f,
++            0.22f,
++            0.18f,
++            1.0f
++        ),
++        colors1 = floatArrayOf(
++            0.15f,
++            0.20f,
++            0.82f,
++            0.58f,
++            0.24f,
++            0.14f,
++            0.58f,
++            0.54f,
++            0.36f,
++            0.20f,
++            0.74f,
++            0.48f,
++            0.10f,
++            0.33f,
++            0.88f,
++            0.52f
++        ),
++        colors2 = floatArrayOf(
++            0.08f,
++            0.27f,
++            0.95f,
++            0.62f,
++            0.70f,
++            0.24f,
++            0.78f,
++            0.54f,
++            0.13f,
++            0.36f,
++            0.93f,
++            0.56f,
++            0.04f,
++            0.22f,
++            0.82f,
++            0.58f
++        ),
++        colors3 = floatArrayOf(
++            0.72f,
++            0.30f,
++            0.82f,
++            0.52f,
++            0.30f,
++            0.20f,
++            0.68f,
++            0.50f,
++            0.76f,
++            0.34f,
++            0.72f,
++            0.48f,
++            0.16f,
++            0.22f,
++            0.76f,
++            0.58f
++        ),
++        colorInterpPeriod = 8.0f,
++        lightOffset = 0.02f,
++        saturateOffset = 0.2f,
++        pointOffset = 0.38f,
++    )
++
++    private val OS3_PAD_LIGHT = Config(
++        points = floatArrayOf(
++            0.8f,
++            0.2f,
++            1.0f,
++            0.8f,
++            0.9f,
++            1.0f,
++            0.2f,
++            0.9f,
++            1.0f,
++            0.2f,
++            0.2f,
++            1.0f
++        ),
++        colors1 = floatArrayOf(
++            0.99f,
++            0.77f,
++            0.86f,
++            1.0f,
++            0.74f,
++            0.76f,
++            1.0f,
++            1.0f,
++            0.72f,
++            0.74f,
++            1.0f,
++            1.0f,
++            0.98f,
++            0.76f,
++            0.8f,
++            1.0f
++        ),
++        colors2 = floatArrayOf(
++            0.66f,
++            0.75f,
++            1.0f,
++            1.0f,
++            1.0f,
++            0.86f,
++            0.91f,
++            1.0f,
++            0.74f,
++            0.76f,
++            1.0f,
++            1.0f,
++            0.97f,
++            0.77f,
++            0.84f,
++            1.0f
++        ),
++        colors3 = floatArrayOf(
++            0.97f,
++            0.79f,
++            0.85f,
++            1.0f,
++            0.65f,
++            0.68f,
++            0.98f,
++            1.0f,
++            0.66f,
++            0.77f,
++            1.0f,
++            1.0f,
++            0.72f,
++            0.73f,
++            0.98f,
++            1.0f
++        ),
++        colorInterpPeriod = 7.0f,
++        lightOffset = 0.1f,
++        saturateOffset = 0.2f,
++        pointOffset = 0.2f,
++    )
++
++    private val OS3_PAD_DARK = Config(
++        points = floatArrayOf(
++            0.8f,
++            0.2f,
++            1.0f,
++            0.8f,
++            0.9f,
++            1.0f,
++            0.2f,
++            0.9f,
++            1.0f,
++            0.2f,
++            0.2f,
++            1.0f
++        ),
++        colors1 = floatArrayOf(
++            0.66f,
++            0.26f,
++            0.62f,
++            0.4f,
++            0.06f,
++            0.25f,
++            0.84f,
++            0.5f,
++            0.0f,
++            0.64f,
++            0.96f,
++            0.5f,
++            0.14f,
++            0.18f,
++            0.55f,
++            0.5f
++        ),
++        colors2 = floatArrayOf(
++            0.07f,
++            0.15f,
++            0.79f,
++            0.5f,
++            0.11f,
++            0.16f,
++            0.83f,
++            0.5f,
++            0.06f,
++            0.25f,
++            0.84f,
++            0.5f,
++            0.66f,
++            0.26f,
++            0.62f,
++            0.5f
++        ),
++        colors3 = floatArrayOf(
++            0.58f,
++            0.3f,
++            0.74f,
++            0.5f,
++            0.11f,
++            0.16f,
++            0.83f,
++            0.5f,
++            0.66f,
++            0.26f,
++            0.62f,
++            0.5f,
++            0.27f,
++            0.18f,
++            0.6f,
++            0.6f
++        ),
++        colorInterpPeriod = 7.0f,
++        lightOffset = 0.0f,
++        saturateOffset = 0.0f,
++        pointOffset = 0.2f,
++    )
++
++    private val SOFT_BLUE = Config(
++        points = floatArrayOf(
++            0.8f,
++            0.2f,
++            1.0f,
++            0.8f,
++            0.9f,
++            1.0f,
++            0.2f,
++            0.9f,
++            1.0f,
++            0.2f,
++            0.2f,
++            1.0f
++        ),
++        colors1 = floatArrayOf(
++            0.533f, 0.760f, 1.000f, 1.0f,
++            0.510f, 0.745f, 1.000f, 1.0f,
++            0.486f, 0.730f, 1.000f, 1.0f,
++            0.463f, 0.715f, 1.000f, 1.0f,
++        ),
++        colors2 = floatArrayOf(
++            0.478f, 0.730f, 1.000f, 1.0f,
++            0.458f, 0.718f, 1.000f, 1.0f,
++            0.438f, 0.706f, 1.000f, 1.0f,
++            0.418f, 0.693f, 1.000f, 1.0f,
++        ),
++        colors3 = floatArrayOf(
++            0.448f, 0.708f, 1.000f, 1.0f,
++            0.423f, 0.693f, 1.000f, 1.0f,
++            0.403f, 0.678f, 1.000f, 1.0f,
++            0.383f, 0.663f, 1.000f, 1.0f,
++        ),
++        colorInterpPeriod = 7.0f,
++        lightOffset = 0.14f,
++        saturateOffset = 0.10f,
++        pointOffset = 0.2f,
++    )
++
++    internal fun get(deviceType: DeviceType, isDark: Boolean): Config = when (deviceType) {
++        DeviceType.PHONE -> if (!isDark) SOFT_BLUE else SOFT_BLUE
++        DeviceType.PAD -> if (!isDark) OS3_PAD_LIGHT else OS3_PAD_DARK
++    }
++}
+diff --git a/archive/unreferenced-upstream/app/src/main/kotlin/io/github/proify/lyricon/app/compose/effect/BgEffectPainter.kt b/archive/unreferenced-upstream/app/src/main/kotlin/io/github/proify/lyricon/app/compose/effect/BgEffectPainter.kt
+new file mode 100644
+index 0000000..8d56043
+--- /dev/null
++++ b/archive/unreferenced-upstream/app/src/main/kotlin/io/github/proify/lyricon/app/compose/effect/BgEffectPainter.kt
+@@ -0,0 +1,121 @@
++/*
++ * Copyright 2026 Proify, Tomakino
++ * Licensed under the Apache License, Version 2.0
++ * http://www.apache.org/licenses/LICENSE-2.0
++ */
++
++package io.github.proify.lyricon.app.compose.effect
++
++import android.os.Build
++import androidx.annotation.RequiresApi
++import androidx.compose.ui.graphics.Brush
++import top.yukonga.miuix.kmp.blur.RuntimeShader
++import top.yukonga.miuix.kmp.blur.asBrush
++
++@RequiresApi(Build.VERSION_CODES.TIRAMISU)
++class BgEffectPainter {
++
++    val runtimeShader by lazy {
++        RuntimeShader(OS3_BG_FRAG).also {
++            initStaticUniforms(it)
++        }
++    }
++
++    val brush: Brush by lazy { runtimeShader.asBrush() }
++
++    private val resolution = FloatArray(2)
++    private val bound = FloatArray(4)
++
++    private var animTime = Float.NaN
++    private var isDarkCached: Boolean? = null
++    private var deviceTypeCached: DeviceType? = null
++
++    private var presetApplied = false
++
++    private var deviceType = DeviceType.PHONE
++
++    companion object {
++        private const val U_TRANSLATE_Y = 0f
++        private const val U_ALPHA_MULTI = 1f
++        private const val U_NOISE_SCALE = 1.5f
++        private const val U_POINT_RADIUS_MULTI = 1f
++        private const val U_ALPHA_OFFSET = 0.1f
++        private const val U_SHADOW_OFFSET = 0.01f
++    }
++
++    private fun initStaticUniforms(shader: RuntimeShader) {
++        shader.setFloatUniform("uTranslateY", U_TRANSLATE_Y)
++        shader.setFloatUniform("uNoiseScale", U_NOISE_SCALE)
++        shader.setFloatUniform("uPointRadiusMulti", U_POINT_RADIUS_MULTI)
++        shader.setFloatUniform("uAlphaMulti", U_ALPHA_MULTI)
++        shader.setFloatUniform("uAlphaOffset", U_ALPHA_OFFSET)
++        shader.setFloatUniform("uShadowOffset", U_SHADOW_OFFSET)
++    }
++
++    fun updateResolution(width: Float, height: Float) {
++        if (resolution[0] == width && resolution[1] == height) return
++        resolution[0] = width
++        resolution[1] = height
++        runtimeShader.setFloatUniform("uResolution", resolution)
++    }
++
++    fun updateAnimTime(time: Float) {
++        if (animTime == time) return
++        animTime = time
++        runtimeShader.setFloatUniform("uAnimTime", animTime)
++    }
++
++    fun updateColors(colors: FloatArray) {
++        runtimeShader.setFloatUniform("uColors", colors)
++    }
++
++    fun updatePresetIfNeeded(
++        logoHeight: Float,
++        height: Float,
++        width: Float,
++        isDark: Boolean,
++    ) {
++        if (presetApplied && isDarkCached == isDark && deviceTypeCached == deviceType) return
++
++        updateBound(logoHeight, height, width)
++        applyPreset(isDark)
++
++        isDarkCached = isDark
++        deviceTypeCached = deviceType
++        presetApplied = true
++    }
++
++    private fun applyPreset(isDark: Boolean) {
++        val preset = BgEffectConfig.get(deviceType, isDark)
++
++        runtimeShader.setFloatUniform("uPoints", preset.points)
++        runtimeShader.setFloatUniform("uPointOffset", preset.pointOffset)
++        runtimeShader.setFloatUniform("uLightOffset", preset.lightOffset)
++        runtimeShader.setFloatUniform("uSaturateOffset", preset.saturateOffset)
++        runtimeShader.setFloatUniform("uBound", bound)
++        runtimeShader.setFloatUniform("uShadowColorMulti", preset.shadowColorMulti)
++        runtimeShader.setFloatUniform("uShadowColorOffset", preset.shadowColorOffset)
++        runtimeShader.setFloatUniform("uShadowNoiseScale", preset.shadowNoiseScale)
++    }
++
++    private fun updateBound(
++        logoHeight: Float,
++        totalHeight: Float,
++        totalWidth: Float,
++    ) {
++        val heightRatio = logoHeight / totalHeight
++        if (totalWidth <= totalHeight) {
++            bound[0] = 0f
++            bound[1] = 1f - heightRatio
++            bound[2] = 1f
++            bound[3] = heightRatio
++        } else {
++            val aspectRatio = totalWidth / totalHeight
++            val contentCenterY = 1f - heightRatio / 2f
++            bound[0] = 0f
++            bound[1] = contentCenterY - aspectRatio / 2f
++            bound[2] = 1f
++            bound[3] = aspectRatio
++        }
++    }
++}
+\ No newline at end of file
+diff --git a/archive/unreferenced-upstream/app/src/main/kotlin/io/github/proify/lyricon/app/compose/effect/DeviceType.kt b/archive/unreferenced-upstream/app/src/main/kotlin/io/github/proify/lyricon/app/compose/effect/DeviceType.kt
+new file mode 100644
+index 0000000..bcb1e5e
+--- /dev/null
++++ b/archive/unreferenced-upstream/app/src/main/kotlin/io/github/proify/lyricon/app/compose/effect/DeviceType.kt
+@@ -0,0 +1,12 @@
++/*
++ * Copyright 2026 Proify, Tomakino
++ * Licensed under the Apache License, Version 2.0
++ * http://www.apache.org/licenses/LICENSE-2.0
++ */
++
++package io.github.proify.lyricon.app.compose.effect
++
++enum class DeviceType {
++    PHONE,
++    PAD,
++}
+\ No newline at end of file
+diff --git a/archive/unreferenced-upstream/app/src/main/kotlin/io/github/proify/lyricon/app/compose/effect/FrameTimeSeconds.kt b/archive/unreferenced-upstream/app/src/main/kotlin/io/github/proify/lyricon/app/compose/effect/FrameTimeSeconds.kt
+new file mode 100644
+index 0000000..e5bf673
+--- /dev/null
++++ b/archive/unreferenced-upstream/app/src/main/kotlin/io/github/proify/lyricon/app/compose/effect/FrameTimeSeconds.kt
+@@ -0,0 +1,42 @@
++/*
++ * Copyright 2026 Proify, Tomakino
++ * Licensed under the Apache License, Version 2.0
++ * http://www.apache.org/licenses/LICENSE-2.0
++ */
++
++package io.github.proify.lyricon.app.compose.effect
++
++import androidx.compose.runtime.Composable
++import androidx.compose.runtime.LaunchedEffect
++import androidx.compose.runtime.getValue
++import androidx.compose.runtime.mutableFloatStateOf
++import androidx.compose.runtime.remember
++import androidx.compose.runtime.setValue
++import androidx.compose.runtime.withFrameNanos
++
++@Composable
++fun rememberFrameTimeSeconds(
++    playing: Boolean = true,
++): () -> Float {
++    var time by remember { mutableFloatStateOf(0f) }
++    var startOffset by remember { mutableFloatStateOf(0f) }
++
++    LaunchedEffect(playing) {
++        if (!playing) {
++            startOffset = time
++            return@LaunchedEffect
++        }
++
++        val start = withFrameNanos { it }
++
++        while (playing) {
++            val now = withFrameNanos { it }
++
++            time =
++                startOffset +
++                        (now - start) / 1_000_000_000f
++        }
++    }
++
++    return { time }
++}
+\ No newline at end of file
+diff --git a/archive/unreferenced-upstream/app/src/main/kotlin/io/github/proify/lyricon/app/compose/effect/OS3BgFrag.kt b/archive/unreferenced-upstream/app/src/main/kotlin/io/github/proify/lyricon/app/compose/effect/OS3BgFrag.kt
+new file mode 100644
+index 0000000..15475dc
+--- /dev/null
++++ b/archive/unreferenced-upstream/app/src/main/kotlin/io/github/proify/lyricon/app/compose/effect/OS3BgFrag.kt
+@@ -0,0 +1,146 @@
++/*
++ * Copyright 2026 Proify, Tomakino
++ * Licensed under the Apache License, Version 2.0
++ * http://www.apache.org/licenses/LICENSE-2.0
++ */
++
++package io.github.proify.lyricon.app.compose.effect
++
++const val OS3_BG_FRAG = """
++    uniform vec2 uResolution;
++    uniform shader uTex;
++    uniform shader uTexBitmap;
++    uniform vec2 uTexWH;
++
++    uniform float uAnimTime;
++    uniform vec4 uBound;
++    uniform float uTranslateY;
++    uniform vec3 uPoints[4];
++    uniform vec4 uColors[4];
++    uniform float uAlphaMulti;
++    uniform float uNoiseScale;
++    uniform float uPointOffset;
++    uniform float uPointRadiusMulti;
++    uniform float uSaturateOffset;
++    uniform float uLightOffset;
++    uniform float uAlphaOffset;
++    uniform float uShadowColorMulti;
++    uniform float uShadowColorOffset;
++    uniform float uShadowNoiseScale;
++    uniform float uShadowOffset;
++
++    vec3 hsl2rgb(in vec3 c) {
++        vec3 rgb = clamp(abs(mod(c.x*6.0+vec3(0.0, 4.0, 2.0), 6.0)-3.0)-1.0, 0.0, 1.0);
++        return c.z + c.y * (rgb-0.5)*(1.0-abs(2.0*c.z-1.0));
++    }
++
++    vec3 HueShift (in vec3 Color, in float Shift) {
++        vec3 P = vec3(0.55735)*dot(vec3(0.55735), Color);
++        vec3 U = Color-P;
++        vec3 V = cross(vec3(0.55735), U);
++        Color = U*cos(Shift*6.2832) + V*sin(Shift*6.2832) + P;
++        return vec3(Color);
++    }
++
++    vec3 rgb2hsl(in vec3 c){
++        float h = 0.0; float s = 0.0; float l = 0.0;
++        float r = c.r; float g = c.g; float b = c.b;
++        float cMin = min(r, min(g, b));
++        float cMax = max(r, max(g, b));
++        l = (cMax + cMin) / 2.0;
++        if (cMax > cMin) {
++            float cDelta = cMax - cMin;
++            s = l < .0 ? cDelta / (cMax + cMin) : cDelta / (2.0 - (cMax + cMin));
++            if (r == cMax) h = (g - b) / cDelta;
++            else if (g == cMax) h = 2.0 + (b - r) / cDelta;
++            else h = 4.0 + (r - g) / cDelta;
++            if (h < 0.0) h += 6.0;
++            h = h / 6.0;
++        }
++        return vec3(h, s, l);
++    }
++
++    vec3 rgb2hsv(vec3 c) {
++        vec4 K = vec4(0.0, -1.0 / 3.0, 2.0 / 3.0, -1.0);
++        vec4 p = mix(vec4(c.bg, K.wz), vec4(c.gb, K.xy), step(c.b, c.g));
++        vec4 q = mix(vec4(p.xyw, c.r), vec4(c.r, p.yzx), step(p.x, c.r));
++        float d = q.x - min(q.w, q.y);
++        float e = 1.0e-10;
++        return vec3(abs(q.z + (q.w - q.y) / (6.0 * d + e)), d / (q.x + e), q.x);
++    }
++
++    vec3 hsv2rgb(vec3 c) {
++        vec4 K = vec4(1.0, 2.0 / 3.0, 1.0 / 3.0, 3.0);
++        vec3 p = abs(fract(c.xxx + K.xyz) * 6.0 - K.www);
++        return c.z * mix(K.xxx, clamp(p - K.xxx, 0.0, 1.0), c.y);
++    }
++
++    float hash(vec2 p) {
++        vec3 p3 = fract(vec3(p.xyx) * 0.13);
++        p3 += dot(p3, p3.yzx + 3.333);
++        return fract((p3.x + p3.y) * p3.z);
++    }
++
++    float perlin(vec2 x) {
++        vec2 i = floor(x); vec2 f = fract(x);
++        float a = hash(i); float b = hash(i + vec2(1.0, 0.0));
++        float c = hash(i + vec2(0.0, 1.0)); float d = hash(i + vec2(1.0, 1.0));
++        vec2 u = f * f * (3.0 - 2.0 * f);
++        return mix(a, b, u.x) + (c - a) * u.y * (1.0 - u.x) + (d - b) * u.x * u.y;
++    }
++
++    float gradientNoise(in vec2 uv) {
++        return fract(52.9829189 * fract(dot(uv, vec2(0.06711056, 0.00583715))));
++    }
++
++    vec4 main(vec2 fragCoord){
++        vec2 vUv = fragCoord/uResolution;
++        vUv.y = 1.0-vUv.y;
++        vec2 uv = vUv;
++        uv -= vec2(0., uTranslateY);
++        uv.xy -= uBound.xy;
++        uv.xy /= uBound.zw;
++
++        vec3 hsv;
++        vec4 color = vec4(0.0);
++        float noiseValue = perlin(vUv * uNoiseScale + vec2(-uAnimTime, -uAnimTime));
++
++        for (int i = 0; i < 4; i++){
++            vec4 pointColor = uColors[i];
++            pointColor.rgb *= pointColor.a;
++            vec2 point = uPoints[i].xy;
++            float rad = uPoints[i].z * uPointRadiusMulti;
++
++            point.x += sin(uAnimTime + point.y) * uPointOffset;
++            point.y += cos(uAnimTime + point.x) * uPointOffset;
++
++            float d = distance(uv, point);
++            float pct = smoothstep(rad, 0., d);
++
++            color.rgb = mix(color.rgb, pointColor.rgb, pct);
++            color.a = mix(color.a, pointColor.a, pct);
++        }
++
++        float oppositeNoise = smoothstep(0., 1., noiseValue);
++        color.rgb /= color.a;
++        hsv = rgb2hsv(color.rgb);
++        hsv.y = mix(hsv.y, 0.0, oppositeNoise * uSaturateOffset);
++        color.rgb = hsv2rgb(hsv);
++        color.rgb += oppositeNoise * uLightOffset;
++
++        color.a = clamp(color.a, 0., 1.);
++        color.a *= uAlphaMulti;
++
++        vec4 uiColor = uTex.eval(vec2(vUv.x, 1.0 - vUv.y)*uResolution);
++        vec4 fragColor;
++
++        if (uiColor.a < 0.01) {
++            fragColor = color;
++        } else {
++            fragColor = uiColor;
++        }
++
++        color += (1.0 / 255.0) * gradientNoise(fragCoord.xy) - (0.5 / 255.0);
++        return vec4(color.rgb*color.a, color.a);
++    }
++"""
+\ No newline at end of file
+diff --git a/archive/unreferenced-upstream/lyric/statusbarlyric/src/main/kotlin/io/github/proify/lyricon/statusbarlyric/logo/AppLogoStrategy.kt b/archive/unreferenced-upstream/lyric/statusbarlyric/src/main/kotlin/io/github/proify/lyricon/statusbarlyric/logo/AppLogoStrategy.kt
+new file mode 100644
+index 0000000..608b145
+--- /dev/null
++++ b/archive/unreferenced-upstream/lyric/statusbarlyric/src/main/kotlin/io/github/proify/lyricon/statusbarlyric/logo/AppLogoStrategy.kt
+@@ -0,0 +1,64 @@
++/*
++ * Copyright 2026 Proify, Tomakino
++ * Licensed under the Apache License, Version 2.0
++ * http://www.apache.org/licenses/LICENSE-2.0
++ */
++
++package io.github.proify.lyricon.statusbarlyric.logo
++
++import android.graphics.drawable.Drawable
++import java.util.WeakHashMap
++
++/**
++ * 策略：显示当前活跃 App 的图标。
++ * 作为兜底策略，不应用特殊颜色或动画。
++ */
++class AppLogoStrategy(
++    val view: SuperLogo
++) : ILogoStrategy {
++    // 使用弱引用缓存防止 Context 泄漏
++    private val cacheIcons = WeakHashMap<String, Drawable>()
++
++    override var isEffective: Boolean = false
++        private set
++
++    override fun updateContent() {
++        if (view.imageTintList != null) view.imageTintList = null
++        if (view.outlineProvider != null) view.outlineProvider = null
++
++        val activePackage = view.activePackage
++        val icon = if (activePackage.isNullOrBlank()) null else getIcon(activePackage)
++
++        view.setImageDrawable(icon)
++        isEffective = icon != null
++        view.updateVisibility()
++    }
++
++    private fun getIcon(packageName: String): Drawable? {
++        if (packageName.isBlank()) return null
++
++        cacheIcons[packageName]?.let { return it }
++
++        return try {
++            val icon = view.context.packageManager.getApplicationIcon(packageName)
++            cacheIcons[packageName] = icon
++            icon
++        } catch (_: Exception) {
++            null
++        }
++    }
++
++    override fun onColorUpdate() {
++        // App 图标保持原色
++    }
++
++    override fun onAttach() {
++        if (view.drawable == null) updateContent()
++    }
++
++    override fun onDetach() {
++        // App 图标通常较小且由系统缓存管理，可不主动清理，或根据内存策略清理
++    }
++
++    override fun onVisibilityChanged(visible: Boolean) {}
++}
+\ No newline at end of file
+diff --git a/archive/unreferenced-upstream/lyric/statusbarlyric/src/main/kotlin/io/github/proify/lyricon/statusbarlyric/logo/CoverStrategy.kt b/archive/unreferenced-upstream/lyric/statusbarlyric/src/main/kotlin/io/github/proify/lyricon/statusbarlyric/logo/CoverStrategy.kt
+new file mode 100644
+index 0000000..031b88b
+--- /dev/null
++++ b/archive/unreferenced-upstream/lyric/statusbarlyric/src/main/kotlin/io/github/proify/lyricon/statusbarlyric/logo/CoverStrategy.kt
+@@ -0,0 +1,168 @@
++/*
++ * Copyright 2026 Proify, Tomakino
++ * Licensed under the Apache License, Version 2.0
++ * http://www.apache.org/licenses/LICENSE-2.0
++ */
++
++package io.github.proify.lyricon.statusbarlyric.logo
++
++import android.animation.ObjectAnimator
++import android.animation.ValueAnimator
++import android.graphics.Bitmap
++import android.graphics.Outline
++import android.view.View
++import android.view.ViewOutlineProvider
++import android.view.animation.LinearInterpolator
++import io.github.proify.android.extensions.crc32
++import io.github.proify.android.extensions.dp
++import io.github.proify.android.extensions.toBitmap
++import io.github.proify.lyricon.lyric.style.LogoStyle
++
++/**
++ * 策略：显示专辑封面。
++ * 支持圆形旋转（唱片模式）和圆角矩形，不跟随状态栏颜色。
++ */
++class CoverStrategy(
++    private val view: SuperLogo
++) : ILogoStrategy {
++
++    companion object {
++        private const val DEFAULT_ROTATION_DURATION_MS = 12_000L
++        private val SQUIRCLE_CORNER_RADIUS_DP by lazy { 3.5f.dp.toFloat() }
++    }
++
++    private var rotationAnimator: ObjectAnimator? = null
++    private var lastFileSignature: String? = null
++
++    override var isEffective: Boolean = false
++        private set
++
++    var style: Int = LogoStyle.STYLE_COVER_CIRCLE
++
++    override fun updateContent() {
++        // 封面模式清除 Tint
++        if (view.imageTintList != null) view.imageTintList = null
++
++        val coverFile = view.coverFile
++        if (coverFile == null || !coverFile.exists()) {
++            view.setImageDrawable(null)
++            isEffective = false
++            lastFileSignature = null
++        } else {
++            val signature = coverFile.crc32().toString()
++
++            // 只有文件变动或未初始化时才重新加载
++            if (signature != lastFileSignature || view.drawable == null) {
++                val bitmap: Bitmap? = coverFile.toBitmap(view.width, view.height)
++                view.setImageBitmap(bitmap)
++                lastFileSignature = signature
++                isEffective = bitmap != null
++
++                stopAnimation(true)
++            }
++        }
++
++        // 始终应用 Outline 和 动画状态检查，以防 Style 变更
++        applyStyleAndAnimation()
++        view.updateVisibility()
++    }
++
++    private fun applyStyleAndAnimation() {
++        val currentStyle =
++            view.lyricStyle?.packageStyle?.logo?.style ?: LogoStyle.Companion.STYLE_COVER_CIRCLE
++        val oldStyle = this.style
++        this.style = currentStyle
++
++        // 设置裁剪轮廓
++        applyOutlineProvider(currentStyle)
++
++        // 如果从圆形切换到其他样式，必须强制重置旋转角度
++        if (oldStyle == LogoStyle.STYLE_COVER_CIRCLE && currentStyle != LogoStyle.Companion.STYLE_COVER_CIRCLE) {
++            view.rotation = 0f
++        }
++
++        // 检查动画状态
++        checkAnimationState()
++    }
++
++    override fun onColorUpdate() {
++        // 封面保持原色，不应用 Tint
++    }
++
++    override fun onAttach() {
++        // 恢复视图状态
++        updateContent()
++        checkAnimationState()
++    }
++
++    override fun onDetach() {
++        stopAnimation()
++        // 可以在此释放图片，下次 onAttach 时会通过 updateContent 重新加载
++        // setImageDrawable(null)
++    }
++
++    override fun onVisibilityChanged(visible: Boolean) {
++        if (visible) checkAnimationState() else stopAnimation()
++    }
++
++    private fun applyOutlineProvider(style: Int) {
++        val provider = when (style) {
++            LogoStyle.STYLE_COVER_CIRCLE -> object : ViewOutlineProvider() {
++                override fun getOutline(view: View, outline: Outline) {
++                    outline.setOval(0, 0, view.width, view.height)
++                }
++            }
++
++            LogoStyle.STYLE_COVER_SQUIRCLE -> object : ViewOutlineProvider() {
++                override fun getOutline(view: View, outline: Outline) {
++                    outline.setRoundRect(
++                        0,
++                        0,
++                        view.width,
++                        view.height,
++                        SQUIRCLE_CORNER_RADIUS_DP
++                    )
++                }
++            }
++
++            else -> null
++        }
++        view.outlineProvider = provider
++        view.clipToOutline = provider != null
++    }
++
++    private fun checkAnimationState() {
++        if (view.isAttachedToWindow && view.isShown && isEffective && style == LogoStyle.Companion.STYLE_COVER_CIRCLE) {
++            startAnimation()
++        } else {
++            stopAnimation()
++        }
++    }
++
++    private fun startAnimation() {
++        if (rotationAnimator?.isRunning == true) return
++
++        rotationAnimator =
++            ObjectAnimator.ofFloat(
++                view, "rotation",
++                view.rotation,
++                view.rotation + 360f
++            ).apply {
++                duration = DEFAULT_ROTATION_DURATION_MS
++                repeatCount = ValueAnimator.INFINITE
++                repeatMode = ValueAnimator.RESTART
++                interpolator = LinearInterpolator()
++                start()
++            }
++    }
++
++    private fun stopAnimation(resetRotation: Boolean = false) {
++        rotationAnimator?.cancel()
++        rotationAnimator = null
++
++        // 注意：这里不自动重置 rotation 为 0，以便暂停后恢复时视觉连贯。
++        // 彻底重置由 LyricLogoView.resetViewAttributes() 在切换策略时处理。
++
++        if (resetRotation) view.rotation = 0f
++    }
++}
+diff --git a/archive/unreferenced-upstream/lyric/statusbarlyric/src/main/kotlin/io/github/proify/lyricon/statusbarlyric/logo/CustomLogoStrategy.kt b/archive/unreferenced-upstream/lyric/statusbarlyric/src/main/kotlin/io/github/proify/lyricon/statusbarlyric/logo/CustomLogoStrategy.kt
+new file mode 100644
+index 0000000..076ab87
+--- /dev/null
++++ b/archive/unreferenced-upstream/lyric/statusbarlyric/src/main/kotlin/io/github/proify/lyricon/statusbarlyric/logo/CustomLogoStrategy.kt
+@@ -0,0 +1,170 @@
++/*
++ * Copyright 2026 Proify, Tomakino
++ * Licensed under the Apache License, Version 2.0
++ * http://www.apache.org/licenses/LICENSE-2.0
++ */
++
++package io.github.proify.lyricon.statusbarlyric.logo
++
++import android.content.res.ColorStateList
++import android.graphics.Bitmap
++import android.graphics.BitmapFactory
++import android.util.Base64
++import io.github.proify.lyricon.common.util.SVGHelper
++
++/**
++ * 策略：显示用户自定义图标。
++ * 支持 Base64 编码的图片和原始 SVG 文本。
++ */
++class CustomLogoStrategy(
++    private val view: SuperLogo
++) : ILogoStrategy {
++    override var isEffective: Boolean = false
++        private set
++
++    private var cachedBitmap: Bitmap? = null
++    private var lastSignature: String? = null
++
++    override fun updateContent() {
++        if (view.outlineProvider != null) view.outlineProvider = null
++
++        val bitmap = loadCustomBitmap()
++        view.setImageBitmap(bitmap)
++        isEffective = bitmap != null
++
++        onColorUpdate()
++        view.updateVisibility()
++    }
++
++    override fun onColorUpdate() {
++        val logoStyle = view.lyricStyle?.packageStyle?.logo
++
++        view.imageTintList =
++            if (logoStyle?.colorfulCustomLogo == true) null else calculateCustomTint()
++    }
++
++    override fun onAttach() {
++        if (view.drawable == null && isEffective) {
++            updateContent()
++        }
++    }
++
++    override fun onDetach() {
++        cachedBitmap = null
++        lastSignature = null
++        view.setImageDrawable(null)
++    }
++
++    override fun onVisibilityChanged(visible: Boolean) {
++        if (visible && view.drawable == null) {
++            updateContent()
++        }
++    }
++
++    private fun loadCustomBitmap(): Bitmap? {
++        val customLogoStr = view.lyricStyle?.packageStyle?.logo?.customLogo
++        if (customLogoStr.isNullOrBlank()) return null
++
++        val lp = view.layoutParams ?: return null
++        val w = lp.width
++        val h = lp.height
++
++        val signature = "${customLogoStr.hashCode()}_${w}_${h}"
++        if (signature == lastSignature && cachedBitmap != null) {
++            return cachedBitmap
++        }
++
++        val bmp = runCatching {
++            when {
++                isSvgString(customLogoStr) -> {
++                    SVGHelper.create(customLogoStr).createBitmap(w, h)
++                }
++
++                customLogoStr.startsWith("data:") -> {
++                    parseDataUri(customLogoStr, w, h)
++                }
++
++                else -> {
++                    decodeBase64Bitmap(customLogoStr)
++                }
++            }
++        }.getOrNull()
++
++        cachedBitmap = bmp
++        lastSignature = signature
++        return bmp
++    }
++
++    private fun isSvgString(str: String): Boolean {
++        val trimmed = str.trimStart()
++        return trimmed.startsWith("<svg", ignoreCase = true) ||
++                trimmed.startsWith("<?xml", ignoreCase = true)
++    }
++
++    private fun parseDataUri(dataUri: String, w: Int, h: Int): Bitmap? {
++        val commaIndex = dataUri.indexOf(',')
++        if (commaIndex == -1) return null
++
++        val header = dataUri.substring(0, commaIndex)
++        val data = dataUri.substring(commaIndex + 1)
++        val isBase64 = header.contains(";base64")
++
++        val mimeType = header.substringAfter("data:").substringBefore(";")
++
++        return when {
++            mimeType.contains("svg") -> {
++                val svgStr = if (isBase64) {
++                    String(Base64.decode(data, Base64.DEFAULT))
++                } else {
++                    data
++                }
++                SVGHelper.create(svgStr).createBitmap(w, h)
++            }
++
++            isBase64 -> {
++                val bytes = Base64.decode(data, Base64.DEFAULT)
++                BitmapFactory.decodeByteArray(bytes, 0, bytes.size)
++            }
++
++            else -> decodeBase64Bitmap(data)
++        }
++    }
++
++    private fun decodeBase64Bitmap(base64Str: String): Bitmap? {
++        val bytes = runCatching {
++            Base64.decode(base64Str, Base64.DEFAULT)
++        }.getOrNull() ?: return null
++        return BitmapFactory.decodeByteArray(bytes, 0, bytes.size)
++    }
++
++    private fun calculateCustomTint(): ColorStateList? {
++        val logoStyle = view.lyricStyle?.packageStyle?.logo
++            ?: return null
++
++        if (!logoStyle.enableCustomColor) {
++            return null
++        }
++
++        val logoColorConfig = logoStyle.color(view.currentStatusColor.isLightMode)
++        val finalColor = when {
++            logoColorConfig.followTextColor -> resolveFollowTextColor()
++            logoColorConfig.color != 0 -> logoColorConfig.color
++            else -> view.currentStatusColor.firstColor()
++        }
++
++        return ColorStateList.valueOf(finalColor)
++    }
++
++    private fun resolveFollowTextColor(): Int {
++        val textStyle = view.lyricStyle?.packageStyle?.text
++        if (textStyle?.enableCustomTextColor != true) {
++            return view.currentStatusColor.firstColor()
++        }
++        val textColorConfig = textStyle.color(view.currentStatusColor.isLightMode)
++        return if (textColorConfig != null && textColorConfig.normal.isNotEmpty()) {
++            textColorConfig.normal.firstOrNull() ?: view.currentStatusColor.firstColor()
++        } else {
++            view.currentStatusColor.firstColor()
++        }
++    }
++}
+diff --git a/archive/unreferenced-upstream/lyric/statusbarlyric/src/main/kotlin/io/github/proify/lyricon/statusbarlyric/logo/ILogoStrategy.kt b/archive/unreferenced-upstream/lyric/statusbarlyric/src/main/kotlin/io/github/proify/lyricon/statusbarlyric/logo/ILogoStrategy.kt
+new file mode 100644
+index 0000000..c1859bb
+--- /dev/null
++++ b/archive/unreferenced-upstream/lyric/statusbarlyric/src/main/kotlin/io/github/proify/lyricon/statusbarlyric/logo/ILogoStrategy.kt
+@@ -0,0 +1,43 @@
++/*
++ * Copyright 2026 Proify, Tomakino
++ * Licensed under the Apache License, Version 2.0
++ * http://www.apache.org/licenses/LICENSE-2.0
++ */
++
++package io.github.proify.lyricon.statusbarlyric.logo
++
++/**
++ * Logo 显示策略接口。
++ * 定义了不同内容源（App图标、Provider图标、封面）的渲染和生命周期行为。
++ */
++interface ILogoStrategy {
++    val isEffective: Boolean
++
++    /**
++     * 加载或更新显示内容。
++     * 在策略初始化、内容源变更或系统封面更新时调用。
++     */
++    fun updateContent()
++
++    /**
++     * 响应状态栏颜色变化。
++     */
++    fun onColorUpdate()
++
++    /**
++     * 当 View 附加到窗口时调用。
++     * 用于恢复动画、注册特定监听器等。
++     */
++    fun onAttach()
++
++    /**
++     * 当 View 从窗口移除时调用。
++     * 用于停止动画、清理重型资源。
++     */
++    fun onDetach()
++
++    /**
++     * 当 View 的可见性发生变化时调用。
++     */
++    fun onVisibilityChanged(visible: Boolean)
++}
+\ No newline at end of file
+diff --git a/archive/unreferenced-upstream/lyric/statusbarlyric/src/main/kotlin/io/github/proify/lyricon/statusbarlyric/logo/ProviderStrategy.kt b/archive/unreferenced-upstream/lyric/statusbarlyric/src/main/kotlin/io/github/proify/lyricon/statusbarlyric/logo/ProviderStrategy.kt
+new file mode 100644
+index 0000000..2b0905f
+--- /dev/null
++++ b/archive/unreferenced-upstream/lyric/statusbarlyric/src/main/kotlin/io/github/proify/lyricon/statusbarlyric/logo/ProviderStrategy.kt
+@@ -0,0 +1,149 @@
++/*
++ * Copyright 2026 Proify, Tomakino
++ * Licensed under the Apache License, Version 2.0
++ * http://www.apache.org/licenses/LICENSE-2.0
++ */
++
++package io.github.proify.lyricon.statusbarlyric.logo
++
++import android.content.res.ColorStateList
++import android.graphics.Bitmap
++import android.util.Log
++import io.github.proify.lyricon.common.util.SVGHelper
++import io.github.proify.lyricon.subscriber.ProviderLogo
++
++/**
++ * 策略：显示歌词提供方（Provider）的 Logo。
++ * 通常为单色 SVG 或 Bitmap，需要适配状态栏颜色。
++ */
++class ProviderStrategy(
++    private val view: SuperLogo
++) : ILogoStrategy {
++    companion object {
++        private const val TAG = "ProviderStrategy"
++    }
++
++    override var isEffective: Boolean = false
++        private set
++
++    private var cachedBitmap: Bitmap? = null
++    private var lastProviderSignature: String? = null
++
++    fun invalidateCache() {
++        cachedBitmap = null
++        lastProviderSignature = null
++    }
++
++    override fun updateContent() {
++        // 提供者 Logo 通常无需裁剪 Outline
++        if (view.outlineProvider != null) view.outlineProvider = null
++
++        val bitmap = loadProviderBitmap()
++        view.setImageBitmap(bitmap)
++        isEffective = bitmap != null
++
++        onColorUpdate() // 内容更新后立即应用颜色
++        view.updateVisibility()
++    }
++
++    override fun onColorUpdate() {
++        view.imageTintList = when {
++            view.providerLogo?.colorful == true -> null
++            else -> calculateTint()
++        }
++    }
++
++    override fun onAttach() {
++        // 如果在 detach 期间清理了 Bitmap，这里可以尝试重新加载
++        if (view.drawable == null && isEffective) {
++            updateContent()
++        }
++    }
++
++    override fun onDetach() {
++        // 释放 Bitmap 引用以减轻内存压力
++        cachedBitmap = null
++        lastProviderSignature = null
++        view.setImageDrawable(null)
++    }
++
++    override fun onVisibilityChanged(visible: Boolean) {
++        if (visible && view.drawable == null) {
++            updateContent()
++        }
++    }
++
++    private fun loadProviderBitmap(): Bitmap? {
++        val logo = view.providerLogo ?: return null
++
++        val lp = view.layoutParams ?: return null
++        val w = lp.width
++        val h = lp.height
++
++        val signature = "${logo.hashCode()}_${w}_${h}_${logo.type}"
++        Log.d(TAG, "Provider logo signature: $signature")
++
++        if (signature == lastProviderSignature && cachedBitmap != null) {
++            return cachedBitmap
++        }
++
++        val bmp = when (logo.type) {
++            ProviderLogo.Companion.TYPE_BITMAP -> logo.toBitmap()
++            ProviderLogo.Companion.TYPE_SVG -> {
++                val svgString = logo.toSvg()
++                if (svgString.isNullOrBlank()) {
++                    Log.w(TAG, "Invalid SVG string")
++                    null
++                } else {
++                    Log.d(
++                        TAG,
++                        "SVG string: w:$w, h:$h, svg: $svgString"
++                    )
++                    runCatching {
++                        SVGHelper.Companion.create(svgString).createBitmap(w, h)
++                    }.getOrNull()
++                }
++            }
++
++            else -> null
++        }
++
++        cachedBitmap = bmp
++        lastProviderSignature = signature
++        return bmp
++    }
++
++    private fun calculateTint(): ColorStateList {
++        val currentStatusColor = view.currentStatusColor
++        val logoStyle = view.lyricStyle?.packageStyle?.logo
++            ?: return ColorStateList.valueOf(currentStatusColor.firstColor())
++
++        if (!logoStyle.enableCustomColor) {
++            return ColorStateList.valueOf(currentStatusColor.firstColor())
++        }
++
++        val logoColorConfig = logoStyle.color(currentStatusColor.isLightMode)
++        val finalColor = when {
++            logoColorConfig.followTextColor -> resolveFollowTextColor()
++            logoColorConfig.color != 0 -> logoColorConfig.color
++            else -> currentStatusColor.firstColor()
++        }
++
++        return ColorStateList.valueOf(finalColor)
++    }
++
++    private fun resolveFollowTextColor(): Int {
++        val currentStatusColor = view.currentStatusColor
++
++        val textStyle = view.lyricStyle?.packageStyle?.text
++        if (textStyle?.enableCustomTextColor != true) {
++            return currentStatusColor.firstColor()
++        }
++        val textColorConfig = textStyle.color(currentStatusColor.isLightMode)
++        return if (textColorConfig != null && textColorConfig.normal.isNotEmpty()) {
++            textColorConfig.normal.firstOrNull() ?: currentStatusColor.firstColor()
++        } else {
++            currentStatusColor.firstColor()
++        }
++    }
++}
+\ No newline at end of file
+diff --git a/archive/unreferenced-upstream/lyric/statusbarlyric/src/main/kotlin/io/github/proify/lyricon/statusbarlyric/logo/SuperLogo.kt b/archive/unreferenced-upstream/lyric/statusbarlyric/src/main/kotlin/io/github/proify/lyricon/statusbarlyric/logo/SuperLogo.kt
+new file mode 100644
+index 0000000..4704d83
+--- /dev/null
++++ b/archive/unreferenced-upstream/lyric/statusbarlyric/src/main/kotlin/io/github/proify/lyricon/statusbarlyric/logo/SuperLogo.kt
+@@ -0,0 +1,300 @@
++/*
++ * Copyright 2026 Proify, Tomakino
++ * Licensed under the Apache License, Version 2.0
++ * http://www.apache.org/licenses/LICENSE-2.0
++ */
++
++package io.github.proify.lyricon.statusbarlyric.logo
++
++import android.animation.ValueAnimator
++import android.annotation.SuppressLint
++import android.content.Context
++import android.graphics.Canvas
++import android.graphics.Color
++import android.graphics.Paint
++import android.graphics.RectF
++import android.view.View
++import android.view.animation.LinearInterpolator
++import android.widget.ImageView
++import android.widget.LinearLayout
++import android.widget.TextView
++import io.github.proify.android.extensions.dp
++import io.github.proify.android.extensions.isVisibleIfChanged
++import io.github.proify.lyricon.lyric.style.LogoStyle
++import io.github.proify.lyricon.lyric.style.LyricStyle
++import io.github.proify.lyricon.statusbarlyric.StatusColor
++import io.github.proify.lyricon.subscriber.ProviderLogo
++import java.io.File
++import kotlin.math.roundToInt
++
++/**
++ * 用于显示歌词来源图标、APP图标或专辑封面的视图组件。
++ * 负责处理图标样式的动态切换、进度绘制以及状态栏颜色适配。
++ */
++@SuppressLint("AppCompatCustomView")
++class SuperLogo(context: Context) : ImageView(context) {
++
++    var linkedTextView: TextView? = null
++
++    var strategy: ILogoStrategy? = null
++        private set
++
++    var providerLogo: ProviderLogo? = null
++        set(value) {
++            if (field !== value) {
++                field = value
++                // 提供者变更时，若当前策略为 ProviderStrategy，需通知其重置缓存
++                (strategy as? ProviderStrategy)?.invalidateCache()
++                reassessStrategy()
++            }
++        }
++
++    var currentStatusColor: StatusColor = StatusColor()
++    var lyricStyle: LyricStyle? = null
++
++    internal var forceHide = false
++        set(value) {
++            field = value
++            updateVisibility()
++        }
++
++    // --- 进度条绘制属性 ---
++    private var progress: Float = 0f
++    private val progressPaint = Paint(Paint.ANTI_ALIAS_FLAG).apply {
++        style = Paint.Style.STROKE
++        strokeCap = Paint.Cap.ROUND
++        alpha = 255
++    }
++    private val progressRect = RectF()
++    private var progressAnimator: ValueAnimator? = null
++
++    companion object {
++        private const val TEXT_SIZE_MULTIPLIER = 1.2f
++        private const val DEFAULT_TEXT_SIZE_DP = 14
++        const val VIEW_TAG: String = "lyricon:logo_view"
++        const val TAG = "SuperLogo"
++    }
++
++    var coverFile: File? = null
++
++    var isOplusCapsuleShowing: Boolean = false
++        set(value) {
++            field = value
++            updateVisibility()
++        }
++
++    var activePackage: String? = null
++
++    init {
++        this.tag = VIEW_TAG
++    }
++
++    /**
++     * 重置进度条状态并取消相关动画。
++     */
++    fun clearProgress() {
++        progressAnimator?.cancel()
++        progressAnimator = null
++        this.progress = 0f
++        invalidate()
++    }
++
++    /**
++     * 同步当前播放进度，并在封面模式下启动进度条补间动画。
++     */
++    fun syncProgress(current: Long, duration: Long) {
++        progressAnimator?.cancel()
++        if (duration <= 0) return
++
++        // 仅在圆形封面模式下显示进度条
++        if (strategy !is CoverStrategy || (strategy as CoverStrategy).style != LogoStyle.STYLE_COVER_CIRCLE) {
++            return
++        }
++
++        val startProgress = current.toFloat() / duration
++        this.progress = startProgress
++        invalidate()
++
++        if (current < duration) {
++            progressAnimator = ValueAnimator.ofFloat(startProgress, 1f).apply {
++                this.duration = duration - current
++                interpolator = LinearInterpolator()
++                addUpdateListener { animator ->
++                    progress = animator.animatedValue as Float
++                    invalidate()
++                }
++                start()
++            }
++        }
++    }
++
++    override fun onDraw(canvas: Canvas) {
++        super.onDraw(canvas)
++        // 仅在进度有效且不为 0 或 1 时绘制，避免视觉干扰
++        if (strategy is CoverStrategy && progress > 0f && progress < 1f) {
++            drawProgress(canvas)
++        }
++    }
++
++    private fun drawProgress(canvas: Canvas) {
++        val strokeWidth = 2.dp.toFloat()
++        val padding = strokeWidth / 2
++
++        progressPaint.strokeWidth = strokeWidth
++        progressPaint.color = currentStatusColor.color.firstOrNull() ?: Color.TRANSPARENT
++
++        progressRect.set(padding, padding, width - padding, height - padding)
++        canvas.drawArc(progressRect, -90f, 360f * progress, false, progressPaint)
++    }
++
++    override fun onAttachedToWindow() {
++        super.onAttachedToWindow()
++        // 恢复策略状态（如重新开始动画）
++        strategy?.onAttach()
++    }
++
++    override fun onDetachedFromWindow() {
++        super.onDetachedFromWindow()
++        // 暂停策略活动（如停止动画、释放临时资源）
++        strategy?.onDetach()
++    }
++
++    fun setStatusBarColor(color: StatusColor) {
++        currentStatusColor = color
++        if (strategy?.isEffective == true) {
++            strategy?.onColorUpdate()
++        }
++        invalidate()
++    }
++
++    override fun onVisibilityChanged(changedView: View, visibility: Int) {
++        super.onVisibilityChanged(changedView, visibility)
++        handleVisibilityChange(visibility)
++    }
++
++    override fun onWindowVisibilityChanged(visibility: Int) {
++        super.onWindowVisibilityChanged(visibility)
++        handleVisibilityChange(visibility)
++    }
++
++    private fun handleVisibilityChange(visibility: Int) {
++        val visible = visibility == VISIBLE && isShown
++        strategy?.onVisibilityChanged(visible)
++
++        if (!visible) {
++            progressAnimator?.cancel()
++        }
++    }
++
++    // region Public API
++
++    /**
++     * 应用新的样式配置，触发布局参数更新及策略重新评估。
++     */
++    fun applyStyle(style: LyricStyle) {
++        this.lyricStyle = style
++        val logoConfig = style.packageStyle.logo
++
++        updateLayoutParams(style, logoConfig)
++        reassessStrategy()
++    }
++
++    // region Internal Logic
++
++    /**
++     * 清除 View 上由先前策略设置的特定属性，防止样式残留。
++     * 包括：旋转角度、OutlineProvider、ColorFilter (Tint)。
++     */
++    private fun resetViewAttributes() {
++        this.rotation = 0f
++        this.outlineProvider = null
++        this.clipToOutline = false
++        this.imageTintList = null
++        this.scaleType = ScaleType.FIT_CENTER // 默认缩放模式
++    }
++
++    private fun reassessStrategy() {
++        val logoConfig = lyricStyle?.packageStyle?.logo ?: return
++
++        val newStrategy = when (logoConfig.style) {
++            LogoStyle.STYLE_COVER_SQUIRCLE,
++            LogoStyle.STYLE_COVER_CIRCLE -> CoverStrategy(this)
++
++            LogoStyle.STYLE_PROVIDER_LOGO ->
++                if (providerLogo == null) null else ProviderStrategy(this)
++
++            LogoStyle.STYLE_APP_LOGO -> AppLogoStrategy(this)
++            LogoStyle.STYLE_LOGO_CUSTOM -> CustomLogoStrategy(this)
++            else -> null
++        }
++
++        // 如果策略类型发生变化，执行完整的切换流程
++        if (strategy?.javaClass != newStrategy?.javaClass) {
++            strategy?.onDetach() // 让旧策略清理资源
++            resetViewAttributes() // 彻底重置 View 属性
++
++            strategy = newStrategy
++
++            // 如果 View 已经 attach，立即触发新策略的 attach
++            if (isAttachedToWindow) {
++                newStrategy?.onAttach()
++            }
++            // 初始渲染
++            newStrategy?.updateContent()
++        } else {
++            // 策略未变，仅更新内容
++            strategy?.updateContent()
++        }
++
++        updateVisibility()
++    }
++
++    fun updateVisibility() {
++        val logoConfig = lyricStyle?.packageStyle?.logo
++        val isEnabled = logoConfig?.enable == true
++        val isEffective = strategy?.isEffective == true
++        val isHideInCapsule =
++            logoConfig?.hideInColorOSCapsuleMode == true && isOplusCapsuleShowing
++
++        this.isVisibleIfChanged = !isHideInCapsule && isEnabled && isEffective && !forceHide
++    }
++
++    private fun updateLayoutParams(style: LyricStyle, logoStyle: LogoStyle) {
++        val defaultSize = calculateDefaultSize(style)
++        val width = if (logoStyle.width <= 0) defaultSize else logoStyle.width.dp
++        val height = if (logoStyle.height <= 0) defaultSize else logoStyle.height.dp
++
++        val params = (layoutParams as? LinearLayout.LayoutParams) ?: LinearLayout.LayoutParams(
++            width,
++            height
++        )
++        params.width = width
++        params.height = height
++        applyMargins(params, logoStyle.margins)
++
++        layoutParams = params
++    }
++
++    private fun applyMargins(
++        params: LinearLayout.LayoutParams,
++        margins: io.github.proify.lyricon.lyric.style.RectF
++    ) {
++        params.leftMargin = margins.left.dp
++        params.topMargin = margins.top.dp
++        params.rightMargin = margins.right.dp
++        params.bottomMargin = margins.bottom.dp
++    }
++
++    private fun calculateDefaultSize(style: LyricStyle): Int {
++        val configuredSize = style.packageStyle.text.textSize
++        return when {
++            configuredSize > 0 -> configuredSize.dp
++            linkedTextView != null -> {
++                (linkedTextView!!.textSize * TEXT_SIZE_MULTIPLIER).roundToInt()
++            }
++
++            else -> DEFAULT_TEXT_SIZE_DP.dp
++        }
++    }
++
++}
+\ No newline at end of file
+diff --git a/archive/unreferenced-upstream/xposed/src/androidTest/java/io/proify/lyricon/xposed/AITranslatorManagerTest.kt b/archive/unreferenced-upstream/xposed/src/androidTest/java/io/proify/lyricon/xposed/AITranslatorManagerTest.kt
+new file mode 100644
+index 0000000..405ccb7
+--- /dev/null
++++ b/archive/unreferenced-upstream/xposed/src/androidTest/java/io/proify/lyricon/xposed/AITranslatorManagerTest.kt
+@@ -0,0 +1,69 @@
++/*
++ * Copyright 2026 Proify, Tomakino
++ * Licensed under the Apache License, Version 2.0
++ * http://www.apache.org/licenses/LICENSE-2.0
++ */
++
++package io.proify.lyricon.xposed
++
++import io.github.proify.lyricon.lyric.ai.core.AiConfig
++import io.github.proify.lyricon.lyric.model.Song
++import io.github.proify.lyricon.xposed.systemui.ai.translate.AiTranslator
++import kotlinx.coroutines.runBlocking
++import org.junit.Assume
++import org.junit.Test
++
++/**
++ * AI 歌词翻译引擎测试类
++ * 验证点：
++ * 1. 旋律对位（音节是否匹配旋律节奏）
++ * 2. 语境关联（前后句是否押韵或语义连贯）
++ * 3. 知名音乐 Benchmark 模仿能力
++ */
++class AiTranslatorManagerTest {
++
++    @Test
++    fun testLyricTranslation(): Unit = runBlocking {
++        val apiKey = System.getenv("AI_TRANSLATION_API_KEY")
++        Assume.assumeTrue("AI_TRANSLATION_API_KEY is not set", !apiKey.isNullOrBlank())
++
++        // 配置信息：建议使用支持长上下文的模型
++        val configs = AiConfig(
++            apiKey = apiKey,
++            provider = "openai",
++            model = System.getenv("AI_TRANSLATION_MODEL") ?: "deepseek-chat",
++            baseUrl = System.getenv("AI_TRANSLATION_BASE_URL") ?: "https://api.deepseek.com/v1"
++        )
++
++        // 模拟一首具有代表性节奏感的歌曲（例如：抒情摇滚风格）
++        val mockSong = Song(
++            name = "In the Shadow",
++            artist = "Generic Rock Band"
++        )
++
++        // 具有起承转合的测试歌词：包含长短句对比、押韵潜力
++        val testLyrics = listOf(
++            "I'm waking up in the dead of night.",        // 节奏点强，期待：午夜梦回、惊醒...
++            "Trying to find a flicker of light.",         // 押韵点 i (night/light)，期待：寻觅微光、抓住光芒...
++            "The world is cold and the walls are high.", // 叙述句，期待：世界冰冷、高墙矗立...
++            "I'm just a shadow passing by."               // 押韵点 i (high/by)，期待：过路之影、瞬息消散...
++        )
++
++        println("--- Starting Translation Request ---")
++
++        val result = AiTranslator.doOpenAiRequest(
++            configs = configs,
++            song = mockSong,
++            texts = testLyrics
++        )
++
++        // 输出结果：观察 AI 是否实现了“填词级”的音节对位与押韵
++        result?.forEach { item ->
++            val original = testLyrics[item.index]
++            println("[ID:${item.index}]")
++            println("Original: $original")
++            println("Singable: ${item.translation}")
++            println("--------------------------")
++        }
++    }
++}
+\ No newline at end of file
+diff --git a/archive/unreferenced-upstream/xposed/src/main/kotlin/io/github/proify/lyricon/xposed/systemui/aitrans/AITranslationApplicator.kt b/archive/unreferenced-upstream/xposed/src/main/kotlin/io/github/proify/lyricon/xposed/systemui/aitrans/AITranslationApplicator.kt
+new file mode 100644
+index 0000000..29963a9
+--- /dev/null
++++ b/archive/unreferenced-upstream/xposed/src/main/kotlin/io/github/proify/lyricon/xposed/systemui/aitrans/AITranslationApplicator.kt
+@@ -0,0 +1,35 @@
++/*
++ * Copyright 2026 Proify, Tomakino
++ * Licensed under the Apache License, Version 2.0
++ * http://www.apache.org/licenses/LICENSE-2.0
++ */
++
++package io.github.proify.lyricon.xposed.systemui.aitrans
++
++import android.util.Log
++import io.github.proify.lyricon.lyric.model.Song
++
++/** Applies validated translation items back to lyric lines. */
++internal object AITranslationApplicator {
++    private const val TAG = "LyriconAITranslator"
++
++    fun apply(song: Song, transItems: List<TranslationItem>): Song {
++        var appliedCount = 0
++        val translationsByIndex = transItems.associateBy { it.index }
++        val newLyrics = song.lyrics?.mapIndexed { index, line ->
++            val transText = translationsByIndex[index]?.tran?.trim()
++
++            if (!transText.isNullOrBlank()
++                && line.translation.isNullOrBlank()
++                && transText.lowercase() != line.text?.trim()?.lowercase()
++            ) {
++                appliedCount++
++                line.copy(translation = transText, translationWords = null)
++            } else {
++                line
++            }
++        }
++        Log.v(TAG, "Applied $appliedCount translation lines to ${song.name}")
++        return song.copy(lyrics = newLyrics)
++    }
++}
+\ No newline at end of file
+diff --git a/archive/unreferenced-upstream/xposed/src/main/kotlin/io/github/proify/lyricon/xposed/systemui/aitrans/AITranslationCache.kt b/archive/unreferenced-upstream/xposed/src/main/kotlin/io/github/proify/lyricon/xposed/systemui/aitrans/AITranslationCache.kt
+new file mode 100644
+index 0000000..d88bbeb
+--- /dev/null
++++ b/archive/unreferenced-upstream/xposed/src/main/kotlin/io/github/proify/lyricon/xposed/systemui/aitrans/AITranslationCache.kt
+@@ -0,0 +1,155 @@
++/*
++ * Copyright 2026 Proify, Tomakino
++ * Licensed under the Apache License, Version 2.0
++ * http://www.apache.org/licenses/LICENSE-2.0
++ */
++
++package io.github.proify.lyricon.xposed.systemui.aitrans
++
++import android.content.ContentValues
++import android.content.Context
++import android.database.sqlite.SQLiteDatabase
++import android.database.sqlite.SQLiteOpenHelper
++import android.util.Log
++import io.github.proify.android.extensions.json
++import kotlinx.coroutines.CoroutineScope
++import kotlinx.coroutines.Dispatchers
++import kotlinx.coroutines.launch
++import kotlinx.coroutines.sync.Mutex
++import kotlinx.coroutines.sync.withLock
++import kotlinx.coroutines.withContext
++import java.util.Collections
++import java.util.concurrent.atomic.AtomicInteger
++
++/** Memory + SQLite cache for completed song-level AI translations. */
++internal class AITranslationCache(
++    private val maxCacheSize: Int,
++    private val generation: AtomicInteger,
++    private val scope: CoroutineScope
++) {
++    private companion object {
++        const val TAG = "LyriconAITranslator"
++    }
++
++    private val dbMutex = Mutex()
++    private var dbHelper: DatabaseHelper? = null
++
++    private val memory: MutableMap<String, List<TranslationItem>> =
++        Collections.synchronizedMap(
++            object : LinkedHashMap<String, List<TranslationItem>>(maxCacheSize, 0.75f, true) {
++                override fun removeEldestEntry(eldest: MutableMap.MutableEntry<String, List<TranslationItem>>?): Boolean {
++                    return size > maxCacheSize
++                }
++            }
++        )
++
++    fun init(context: Context) {
++        if (dbHelper == null) {
++            synchronized(this) {
++                if (dbHelper == null) {
++                    Log.d(TAG, "Initializing database...")
++                    dbHelper = DatabaseHelper(context.applicationContext)
++                }
++            }
++        }
++    }
++
++    fun getFromMemory(key: String): List<TranslationItem>? = memory[key]
++
++    fun putMemory(key: String, items: List<TranslationItem>) {
++        memory[key] = items
++    }
++
++    suspend fun getFromDb(key: String): List<TranslationItem>? = dbMutex.withLock {
++        val db = dbHelper?.readableDatabase ?: return null
++        return runCatching {
++            db.query(
++                DatabaseHelper.TABLE_NAME,
++                arrayOf(DatabaseHelper.COLUMN_DATA),
++                "${DatabaseHelper.COLUMN_ID} = ?",
++                arrayOf(key),
++                null, null, null
++            ).use { cursor ->
++                if (cursor.moveToFirst()) {
++                    val jsonData =
++                        cursor.getString(cursor.getColumnIndexOrThrow(DatabaseHelper.COLUMN_DATA))
++                    json.decodeFromString<List<TranslationItem>>(jsonData)
++                } else null
++            }
++        }.getOrElse {
++            Log.e(TAG, "DB Query error: ${it.message}")
++            null
++        }
++    }
++
++    suspend fun saveToDb(key: String, items: List<TranslationItem>) {
++        val jsonData = json.encodeToString(items)
++        dbMutex.withLock {
++            val db = dbHelper?.writableDatabase ?: return@withLock
++            runCatching {
++                val values = ContentValues().apply {
++                    put(DatabaseHelper.COLUMN_ID, key)
++                    put(DatabaseHelper.COLUMN_DATA, jsonData)
++                    put(DatabaseHelper.COLUMN_TIMESTAMP, System.currentTimeMillis())
++                }
++                db.insertWithOnConflict(
++                    DatabaseHelper.TABLE_NAME,
++                    null,
++                    values,
++                    SQLiteDatabase.CONFLICT_REPLACE
++                )
++            }.onFailure {
++                Log.e(TAG, "Failed to save translation to DB: ${it.message}")
++            }
++        }
++    }
++
++    fun clear(callback: () -> Unit) {
++        generation.incrementAndGet()
++        memory.clear()
++        scope.launch(Dispatchers.IO) {
++            dbMutex.withLock {
++                runCatching {
++                    dbHelper?.writableDatabase?.delete(DatabaseHelper.TABLE_NAME, null, null)
++                    Log.d(TAG, "Database cache cleared.")
++                    withContext(Dispatchers.Main) { callback() }
++                }.onFailure {
++                    Log.e(TAG, "Error clearing database: ${it.message}")
++                }
++            }
++        }
++    }
++
++    private class DatabaseHelper(context: Context) :
++        SQLiteOpenHelper(context, DATABASE_NAME, null, DATABASE_VERSION) {
++
++        companion object {
++            const val DATABASE_NAME = "lyricon_translation.db"
++            const val DATABASE_VERSION = 1
++            const val TABLE_NAME = "ai_cache"
++            const val COLUMN_ID = "song_id"
++            const val COLUMN_DATA = "translation_json"
++            const val COLUMN_TIMESTAMP = "created_at"
++        }
++
++        override fun onCreate(db: SQLiteDatabase) {
++            Log.i(TAG, "Creating translation cache table.")
++            db.execSQL(
++                """
++                CREATE TABLE $TABLE_NAME (
++                    $COLUMN_ID TEXT PRIMARY KEY,
++                    $COLUMN_DATA TEXT,
++                    $COLUMN_TIMESTAMP INTEGER
++                )
++            """.trimIndent()
++            )
++            db.execSQL("CREATE INDEX IF NOT EXISTS idx_timestamp ON $TABLE_NAME($COLUMN_TIMESTAMP)")
++        }
++
++        override fun onUpgrade(db: SQLiteDatabase, oldVersion: Int, newVersion: Int) {
++            Log.w(TAG, "Upgrading database from $oldVersion to $newVersion. All data will be lost.")
++            db.execSQL("DROP TABLE IF EXISTS $TABLE_NAME")
++            onCreate(db)
++        }
++    }
++}
+\ No newline at end of file
+diff --git a/archive/unreferenced-upstream/xposed/src/main/kotlin/io/github/proify/lyricon/xposed/systemui/aitrans/AITranslationKey.kt b/archive/unreferenced-upstream/xposed/src/main/kotlin/io/github/proify/lyricon/xposed/systemui/aitrans/AITranslationKey.kt
+new file mode 100644
+index 0000000..d60e4b4
+--- /dev/null
++++ b/archive/unreferenced-upstream/xposed/src/main/kotlin/io/github/proify/lyricon/xposed/systemui/aitrans/AITranslationKey.kt
+@@ -0,0 +1,27 @@
++/*
++ * Copyright 2026 Proify, Tomakino
++ * Licensed under the Apache License, Version 2.0
++ * http://www.apache.org/licenses/LICENSE-2.0
++ */
++
++package io.github.proify.lyricon.xposed.systemui.aitrans
++
++import io.github.proify.android.extensions.md5
++import io.github.proify.lyricon.lyric.model.Song
++import io.github.proify.lyricon.lyric.style.AiTranslationConfigs
++
++internal object AITranslationKey {
++    fun calculate(configs: AiTranslationConfigs, song: Song, lines: List<String>): String {
++        return buildString {
++            //append("provider=").appendLine(configs.provider.orEmpty())
++            append("target=").appendLine(configs.targetLanguage.orEmpty())
++            //append("baseUrl=").appendLine(configs.baseUrl.orEmpty())
++            //append("model=").appendLine(configs.model.orEmpty())
++            append("title=").appendLine(song.name.orEmpty())
++            append("artist=").appendLine(song.artist.orEmpty())
++            lines.forEachIndexed { index, line ->
++                append(index).append(':').appendLine(line)
++            }
++        }.md5()
++    }
++}
+\ No newline at end of file
+diff --git a/archive/unreferenced-upstream/xposed/src/main/kotlin/io/github/proify/lyricon/xposed/systemui/aitrans/AITranslationModels.kt b/archive/unreferenced-upstream/xposed/src/main/kotlin/io/github/proify/lyricon/xposed/systemui/aitrans/AITranslationModels.kt
+new file mode 100644
+index 0000000..d004015
+--- /dev/null
++++ b/archive/unreferenced-upstream/xposed/src/main/kotlin/io/github/proify/lyricon/xposed/systemui/aitrans/AITranslationModels.kt
+@@ -0,0 +1,55 @@
++/*
++ * Copyright 2026 Proify, Tomakino
++ * Licensed under the Apache License, Version 2.0
++ * http://www.apache.org/licenses/LICENSE-2.0
++ */
++
++package io.github.proify.lyricon.xposed.systemui.aitrans
++
++import kotlinx.serialization.SerialName
++import kotlinx.serialization.Serializable
++
++@Serializable
++internal data class TranslationRequestItem(val index: Int, val src: String)
++
++@Serializable
++internal data class TranslationRequest(val lyrics: List<TranslationRequestItem>)
++
++@Serializable
++data class TranslationItem(val index: Int, val tran: String)
++
++@Serializable
++internal data class TranslationResponse(val translated: List<TranslationItem>)
++
++@Serializable
++internal data class OpenAiChatRequest(
++    val model: String,
++    val messages: List<ChatMessage>,
++    @SerialName("response_format") val responseFormat: ResponseFormat? = null,
++    val temperature: Float? = null,
++    @SerialName("top_p") val topP: Float? = null,
++    @SerialName("max_tokens") val maxTokens: Int? = null,
++    @SerialName("presence_penalty") val presencePenalty: Float? = null,
++    @SerialName("frequency_penalty") val frequencyPenalty: Float? = null
++)
++
++@Serializable
++internal data class ChatMessage(
++    val role: String,
++    val content: String
++)
++
++@Serializable
++internal data class ResponseFormat(
++    val type: String
++)
++
++@Serializable
++internal data class OpenAiChatResponse(
++    val choices: List<Choice>
++)
++
++@Serializable
++internal data class Choice(
++    val message: ChatMessage
++)
+diff --git a/archive/unreferenced-upstream/xposed/src/main/kotlin/io/github/proify/lyricon/xposed/systemui/aitrans/AITranslationPrompt.kt b/archive/unreferenced-upstream/xposed/src/main/kotlin/io/github/proify/lyricon/xposed/systemui/aitrans/AITranslationPrompt.kt
+new file mode 100644
+index 0000000..3e47b7f
+--- /dev/null
++++ b/archive/unreferenced-upstream/xposed/src/main/kotlin/io/github/proify/lyricon/xposed/systemui/aitrans/AITranslationPrompt.kt
+@@ -0,0 +1,25 @@
++/*
++ * Copyright 2026 Proify, Tomakino
++ * Licensed under the Apache License, Version 2.0
++ * http://www.apache.org/licenses/LICENSE-2.0
++ */
++
++package io.github.proify.lyricon.xposed.systemui.aitrans
++
++import io.github.proify.lyricon.lyric.model.Song
++import io.github.proify.lyricon.lyric.style.AiTranslationConfigs
++import java.util.Locale
++
++internal object AITranslationPrompt {
++    private val DEFAULT_PROMPT = AiTranslationConfigs.USER_PROMPT
++
++    fun build(configs: AiTranslationConfigs, song: Song?): String {
++        val target = configs.targetLanguage?.takeIf { it.isNotBlank() }
++            ?: Locale.getDefault().displayLanguage
++        val title = song?.name ?: "Unknown Track"
++        val artist = song?.artist ?: "Unknown Artist"
++        val prompt = configs.prompt.takeIf { it.isNotBlank() } ?: DEFAULT_PROMPT
++
++        return AiTranslationConfigs.getPrompt(target, title, artist, prompt)
++    }
++}
+\ No newline at end of file
+diff --git a/archive/unreferenced-upstream/xposed/src/main/kotlin/io/github/proify/lyricon/xposed/systemui/aitrans/AITranslationResponseParser.kt b/archive/unreferenced-upstream/xposed/src/main/kotlin/io/github/proify/lyricon/xposed/systemui/aitrans/AITranslationResponseParser.kt
+new file mode 100644
+index 0000000..dd5e652
+--- /dev/null
++++ b/archive/unreferenced-upstream/xposed/src/main/kotlin/io/github/proify/lyricon/xposed/systemui/aitrans/AITranslationResponseParser.kt
+@@ -0,0 +1,51 @@
++/*
++ * Copyright 2026 Proify, Tomakino
++ * Licensed under the Apache License, Version 2.0
++ * http://www.apache.org/licenses/LICENSE-2.0
++ */
++
++package io.github.proify.lyricon.xposed.systemui.aitrans
++
++import android.util.Log
++import io.github.proify.android.extensions.json
++
++internal object AITranslationResponseParser {
++    private const val TAG = "LyriconAITranslator"
++
++    fun parse(content: String, requestIndices: Set<Int>): List<TranslationItem> {
++        val items = decodeTranslationItems(content)
++        val validItems = normalizeTranslationItems(items, requestIndices)
++        Log.d(TAG, "API call successful, parsed ${items.size} items, accepted ${validItems.size}.")
++        return validItems
++    }
++
++    private fun decodeTranslationItems(content: String): List<TranslationItem> {
++        return try {
++            return json.decodeFromString<TranslationResponse>(content).translated
++        } catch (_: Exception) {
++            json.decodeFromString<TranslationResponse>(cleanOpenAIResponse(content)).translated
++        }
++    }
++
++    private fun cleanOpenAIResponse(rawResponse: String): String {
++        return rawResponse
++            .replace(Regex("^```json\\s*\\n?"), "")  // 移除开头的 ```json
++            .replace(Regex("^```\\s*\\n?"), "")       // 移除开头的 ```
++            .replace(Regex("\\n?```\\s*$"), "")       // 移除结尾的 ```
++            .trim()
++    }
++
++    private fun normalizeTranslationItems(
++        items: List<TranslationItem>,
++        requestIndices: Set<Int>
++    ): List<TranslationItem> {
++        val accepted = LinkedHashMap<Int, TranslationItem>()
++        items.forEach { item ->
++            val trans = item.tran.trim()
++            if (item.index in requestIndices && trans.isNotBlank() && item.index !in accepted) {
++                accepted[item.index] = item.copy(tran = trans)
++            }
++        }
++        return accepted.values.toList()
++    }
++}
+\ No newline at end of file
+diff --git a/archive/unreferenced-upstream/xposed/src/main/kotlin/io/github/proify/lyricon/xposed/systemui/aitrans/AITranslationScheduler.kt b/archive/unreferenced-upstream/xposed/src/main/kotlin/io/github/proify/lyricon/xposed/systemui/aitrans/AITranslationScheduler.kt
+new file mode 100644
+index 0000000..99eed90
+--- /dev/null
++++ b/archive/unreferenced-upstream/xposed/src/main/kotlin/io/github/proify/lyricon/xposed/systemui/aitrans/AITranslationScheduler.kt
+@@ -0,0 +1,156 @@
++/*
++ * Copyright 2026 Proify, Tomakino
++ * Licensed under the Apache License, Version 2.0
++ * http://www.apache.org/licenses/LICENSE-2.0
++ */
++
++package io.github.proify.lyricon.xposed.systemui.aitrans
++
++import android.util.Log
++import io.github.proify.lyricon.lyric.model.Song
++import io.github.proify.lyricon.lyric.style.AiTranslationConfigs
++import kotlinx.coroutines.CancellationException
++import kotlinx.coroutines.CompletableDeferred
++import kotlinx.coroutines.CoroutineScope
++import kotlinx.coroutines.Deferred
++import kotlinx.coroutines.Dispatchers
++import kotlinx.coroutines.SupervisorJob
++import kotlinx.coroutines.launch
++import java.util.ArrayDeque
++import java.util.concurrent.ConcurrentHashMap
++import java.util.concurrent.atomic.AtomicInteger
++
++/** Bounded background scheduler for AI requests during aggressive song switching. */
++internal class AITranslationScheduler(
++    private val cache: AITranslationCache,
++    private val generation: AtomicInteger,
++    private val maxRunning: Int,
++    private val maxPending: Int
++) {
++    private companion object {
++        const val TAG = "LyriconAITranslator"
++    }
++
++    private val scope = CoroutineScope(Dispatchers.IO + SupervisorJob())
++    private val lock = Any()
++    private val jobs = ConcurrentHashMap<String, TranslationJob>()
++    private val pending = ArrayDeque<TranslationJob>()
++    private var running = 0
++
++    fun getOrEnqueue(
++        key: String,
++        configs: AiTranslationConfigs,
++        song: Song,
++        originalLines: List<String>
++    ): Deferred<List<TranslationItem>?> {
++        synchronized(lock) {
++            jobs[key]?.let {
++                Log.d(TAG, "Reusing scheduled AI translation for: ${song.name} [$key]")
++                return it.deferred
++            }
++
++            val job = TranslationJob(
++                key = key,
++                songName = song.name.orEmpty(),
++                configs = configs,
++                song = song,
++                originalLines = originalLines,
++                generation = generation.get()
++            )
++            jobs[key] = job
++            pending.addLast(job)
++            Log.i(
++                TAG,
++                "Queued AI translation: ${job.songName} pending=${pending.size}, running=$running"
++            )
++            trimPendingLocked()
++            dispatchNextLocked()
++            return job.deferred
++        }
++    }
++
++    fun cancelPending() {
++        synchronized(lock) {
++            while (pending.isNotEmpty()) {
++                val job = pending.removeFirst()
++                job.state = TranslationJobState.CANCELLED
++                jobs.remove(job.key, job)
++                job.deferred.complete(null)
++                Log.d(TAG, "Cancelled pending AI translation: ${job.songName}")
++            }
++        }
++    }
++
++    private fun trimPendingLocked() {
++        while (pending.size > maxPending) {
++            val dropped = pending.removeFirst()
++            if (dropped.state != TranslationJobState.PENDING) continue
++
++            dropped.state = TranslationJobState.CANCELLED
++            jobs.remove(dropped.key, dropped)
++            dropped.deferred.complete(null)
++            Log.w(TAG, "Dropped pending AI translation: ${dropped.songName}, reason=queue_full")
++        }
++    }
++
++    private fun dispatchNextLocked() {
++        while (running < maxRunning && pending.isNotEmpty()) {
++            val job = pending.removeLast()
++            if (job.state != TranslationJobState.PENDING) continue
++
++            job.state = TranslationJobState.RUNNING
++            running++
++            Log.i(
++                TAG,
++                "Running AI translation: ${job.songName} pending=${pending.size}, running=$running"
++            )
++            scope.launch { runJob(job) }
++        }
++    }
++
++    private suspend fun runJob(job: TranslationJob) {
++        try {
++            val apiResults =
++                OpenAiTranslationClient.request(job.configs, job.song, job.originalLines)
++            if (!apiResults.isNullOrEmpty() && job.generation == generation.get()) {
++                Log.i(TAG, "AI translation completed. Saving to cache: ${job.songName}")
++                cache.putMemory(job.key, apiResults)
++                cache.saveToDb(job.key, apiResults)
++            }
++            job.state = TranslationJobState.COMPLETED
++            job.deferred.complete(apiResults)
++        } catch (e: CancellationException) {
++            job.state = TranslationJobState.CANCELLED
++            job.deferred.cancel(e)
++            throw e
++        } catch (e: Exception) {
++            job.state = TranslationJobState.COMPLETED
++            Log.e(TAG, "AI translation job failed for [${job.songName}]: ${e.message}", e)
++            job.deferred.complete(null)
++        } finally {
++            synchronized(lock) {
++                running = (running - 1).coerceAtLeast(0)
++                jobs.remove(job.key, job)
++                dispatchNextLocked()
++            }
++        }
++    }
++
++    private data class TranslationJob(
++        val key: String,
++        val songName: String,
++        val configs: AiTranslationConfigs,
++        val song: Song,
++        val originalLines: List<String>,
++        val generation: Int,
++        val deferred: CompletableDeferred<List<TranslationItem>?> = CompletableDeferred(),
++        var state: TranslationJobState = TranslationJobState.PENDING
++    )
++
++    private enum class TranslationJobState {
++        PENDING,
++        RUNNING,
++        COMPLETED,
++        CANCELLED
++    }
++}
+\ No newline at end of file
+diff --git a/archive/unreferenced-upstream/xposed/src/main/kotlin/io/github/proify/lyricon/xposed/systemui/aitrans/AITranslator.kt b/archive/unreferenced-upstream/xposed/src/main/kotlin/io/github/proify/lyricon/xposed/systemui/aitrans/AITranslator.kt
+new file mode 100644
+index 0000000..ed647bd
+--- /dev/null
++++ b/archive/unreferenced-upstream/xposed/src/main/kotlin/io/github/proify/lyricon/xposed/systemui/aitrans/AITranslator.kt
+@@ -0,0 +1,118 @@
++/*
++ * Copyright 2026 Proify, Tomakino
++ * Licensed under the Apache License, Version 2.0
++ * http://www.apache.org/licenses/LICENSE-2.0
++ */
++
++package io.github.proify.lyricon.xposed.systemui.aitrans
++
++import android.content.Context
++import android.util.Log
++import io.github.proify.lyricon.lyric.model.Song
++import io.github.proify.lyricon.lyric.style.AiTranslationConfigs
++import io.github.proify.lyricon.xposed.systemui.aitrans.AITranslator.translateSongSync
++import kotlinx.coroutines.CancellationException
++import kotlinx.coroutines.CoroutineScope
++import kotlinx.coroutines.Dispatchers
++import kotlinx.coroutines.SupervisorJob
++import java.util.concurrent.atomic.AtomicInteger
++
++/**
++ * SystemUI 进程内的 AI 歌词翻译门面。
++ *
++ * 职责边界：
++ * - [AITranslationKey] 负责生成整首歌级缓存 key。
++ * - [AITranslationCache] 负责内存 + SQLite 双级缓存。
++ * - [AITranslationScheduler] 负责暴力切歌场景下的 pending/running 调度、同 key 复用和队列淘汰。
++ * - [OpenAiTranslationClient] 负责 OpenAI-compatible 网络请求。
++ * - [AITranslationResponseParser] 负责 LLM 响应清洗、兼容解析和 index 校验。
++ * - [AITranslationApplicator] 负责把有效译文写回 Song。
++ *
++ * AI 网络请求不绑定歌词 UI 流水线生命周期。切歌只会取消当前等待者，不会取消已经发出的请求；
++ * 已开始的请求完成后仍会写入缓存，未开始的 pending 请求会在队列过长或清空缓存时被淘汰。
++ */
++object AITranslator {
++    private const val TAG = "LyriconAITranslator"
++    private const val MAX_CACHE_SIZE = 1000
++    private const val MAX_RUNNING_TRANSLATIONS = 10
++    private const val MAX_PENDING_TRANSLATIONS = 10
++
++    private val cacheGeneration = AtomicInteger(0)
++    private val scope = CoroutineScope(Dispatchers.IO + SupervisorJob())
++    private val cache = AITranslationCache(
++        maxCacheSize = MAX_CACHE_SIZE,
++        generation = cacheGeneration,
++        scope = scope
++    )
++    private val scheduler = AITranslationScheduler(
++        cache = cache,
++        generation = cacheGeneration,
++        maxRunning = MAX_RUNNING_TRANSLATIONS,
++        maxPending = MAX_PENDING_TRANSLATIONS
++    )
++
++    fun init(context: Context) {
++        cache.init(context)
++    }
++
++    suspend fun translateSongSync(
++        song: Song,
++        configs: AiTranslationConfigs,
++    ): Song {
++        if (!configs.isUsable) {
++            Log.w(TAG, "Translation skipped: Configs not usable (missing API Key or disabled).")
++            return song
++        }
++        if (song.lyrics.isNullOrEmpty()) return song
++
++        return try {
++            translateSong(song, configs)
++        } catch (e: CancellationException) {
++            throw e
++        } catch (e: Exception) {
++            Log.e(TAG, "Critical error during translateSongSync: ${e.message}", e)
++            song
++        }
++    }
++
++    /** Kept public for the existing network test. Production flow should go through [translateSongSync]. */
++    suspend fun doOpenAiRequest(
++        configs: AiTranslationConfigs,
++        song: Song? = null,
++        texts: List<String>
++    ): List<TranslationItem>? = OpenAiTranslationClient.request(configs, song, texts)
++
++    fun clearCache(callback: () -> Unit) {
++        Log.i(TAG, "Clearing all translation caches (Memory & DB)...")
++        scheduler.cancelPending()
++        cache.clear(callback)
++    }
++
++    private suspend fun translateSong(song: Song, configs: AiTranslationConfigs): Song {
++        val currentLyrics = song.lyrics ?: return song
++        val originalLines = currentLyrics.map { it.text?.trim() ?: "" }
++        val songContentId = AITranslationKey.calculate(configs, song, originalLines)
++
++        cache.getFromMemory(songContentId)?.let {
++            Log.d(TAG, "Memory cache hit for: ${song.name} [$songContentId]")
++            return AITranslationApplicator.apply(song, it)
++        }
++
++        cache.getFromDb(songContentId)?.let {
++            Log.d(TAG, "Database cache hit for: ${song.name} [$songContentId]")
++            cache.putMemory(songContentId, it)
++            return AITranslationApplicator.apply(song, it)
++        }
++
++        Log.i(
++            TAG,
++            "Cache miss. Waiting for AI translation: ${song.name} (${originalLines.size} lines)"
++        )
++        val apiResults = scheduler.getOrEnqueue(songContentId, configs, song, originalLines).await()
++        if (apiResults.isNullOrEmpty()) {
++            Log.w(TAG, "Failed to get translation from API.")
++            return song
++        }
++        return AITranslationApplicator.apply(song, apiResults)
++    }
++}
+\ No newline at end of file
+diff --git a/archive/unreferenced-upstream/xposed/src/main/kotlin/io/github/proify/lyricon/xposed/systemui/aitrans/OpenAiTranslationClient.kt b/archive/unreferenced-upstream/xposed/src/main/kotlin/io/github/proify/lyricon/xposed/systemui/aitrans/OpenAiTranslationClient.kt
+new file mode 100644
+index 0000000..d65c044
+--- /dev/null
++++ b/archive/unreferenced-upstream/xposed/src/main/kotlin/io/github/proify/lyricon/xposed/systemui/aitrans/OpenAiTranslationClient.kt
+@@ -0,0 +1,119 @@
++/*
++ * Copyright 2026 Proify, Tomakino
++ * Licensed under the Apache License, Version 2.0
++ * http://www.apache.org/licenses/LICENSE-2.0
++ */
++
++package io.github.proify.lyricon.xposed.systemui.aitrans
++
++import android.util.Log
++import io.github.proify.android.extensions.json
++import io.github.proify.lyricon.lyric.model.Song
++import io.github.proify.lyricon.lyric.style.AiTranslationConfigs
++import kotlinx.coroutines.CancellationException
++import kotlinx.coroutines.Dispatchers
++import kotlinx.coroutines.withContext
++import java.io.EOFException
++import java.io.OutputStreamWriter
++import java.net.HttpURLConnection
++import java.net.URL
++
++/** OpenAI-compatible Chat Completions client for lyric translation. */
++internal object OpenAiTranslationClient {
++    private const val TAG = "LyriconAITranslator"
++
++    suspend fun request(
++        configs: AiTranslationConfigs,
++        song: Song? = null,
++        texts: List<String>
++    ): List<TranslationItem>? = withContext(Dispatchers.IO) {
++        if (configs.apiKey.isNullOrBlank()) {
++            Log.e(TAG, "Request aborted: API Key is null or blank.")
++            return@withContext null
++        }
++
++        val baseUrl = configs.baseUrl?.removeSuffix("/") ?: "https://api.openai.com/v1"
++        val apiUrl =
++            if (baseUrl.endsWith("/chat/completions")) baseUrl else "$baseUrl/chat/completions"
++
++        val requestItems = texts.mapIndexedNotNull { index, text ->
++            text.trim().takeIf(::shouldRequestTranslation)?.let {
++                TranslationRequestItem(index = index, src = it)
++            }
++        }
++        if (requestItems.isEmpty()) {
++            Log.d(TAG, "Request skipped: no translatable lyric lines.")
++            return@withContext emptyList()
++        }
++
++        val payload = json.encodeToString(TranslationRequest(requestItems))
++        Log.d(TAG, "Requesting translations, payload: $payload")
++
++        val requestIndices = requestItems.map { it.index }.toSet()
++        val chatRequest = OpenAiChatRequest(
++            model = configs.model.orEmpty(),
++            messages = listOf(
++                ChatMessage("system", AITranslationPrompt.build(configs, song)),
++                ChatMessage("user", payload)
++            ),
++            responseFormat = ResponseFormat("json_object"),
++            temperature = configs.temperature,
++            topP = configs.topP,
++            maxTokens = configs.maxTokens.takeIf { it > 0 },
++            presencePenalty = configs.presencePenalty,
++            frequencyPenalty = configs.frequencyPenalty
++        )
++
++        var connection: HttpURLConnection? = null
++        try {
++            val url = URL(apiUrl)
++            Log.d(TAG, "Connecting to OpenAI compatible API: $apiUrl")
++
++            connection = (url.openConnection() as HttpURLConnection).apply {
++                requestMethod = "POST"
++                connectTimeout = 60 * 1000
++                readTimeout = 3 * (60 * 1000)
++                doOutput = true
++                setRequestProperty("Content-Type", "application/json")
++                setRequestProperty("Authorization", "Bearer ${configs.apiKey}")
++                setRequestProperty("User-Agent", "lyricon")
++            }
++
++            OutputStreamWriter(connection.outputStream).use {
++                it.write(json.encodeToString(chatRequest))
++            }
++
++            val responseCode = connection.responseCode
++            if (responseCode == HttpURLConnection.HTTP_OK) {
++                val responseBody = connection.inputStream.bufferedReader().use { it.readText() }
++                val responseObj = json.decodeFromString<OpenAiChatResponse>(responseBody)
++                val content = responseObj.choices.firstOrNull()?.message?.content ?: run {
++                    Log.e(TAG, "Empty content in API response.")
++                    return@withContext null
++                }
++
++                Log.d(TAG, "Parsing JSON response: $content")
++                AITranslationResponseParser.parse(content, requestIndices)
++            } else {
++                val errorBody = connection.errorStream?.bufferedReader()?.use { it.readText() }
++                Log.e(TAG, "API request failed with code $responseCode: $errorBody")
++                null
++            }
++        } catch (e: CancellationException) {
++            throw e
++        } catch (e: EOFException) {
++            Log.w(TAG, "AI response stream ended unexpectedly: ${e.message ?: "EOF"}")
++            null
++        } catch (e: Exception) {
++            Log.e(TAG, "Network or Parsing error in doOpenAiRequest: ${e.message}", e)
++            null
++        } finally {
++            connection?.disconnect()
++        }
++    }
++
++    private fun shouldRequestTranslation(text: String): Boolean {
++        if (text.isBlank()) return false
++        return text.any { it.isLetter() }
++    }
++}
+diff --git a/bridge/src/main/kotlin/io/github/proify/lyricon/app/bridge/AppBridge.kt b/bridge/src/main/kotlin/io/github/proify/lyricon/app/bridge/AppBridge.kt
+index 8feb58c..2846212 100644
+--- a/bridge/src/main/kotlin/io/github/proify/lyricon/app/bridge/AppBridge.kt
++++ b/bridge/src/main/kotlin/io/github/proify/lyricon/app/bridge/AppBridge.kt
+@@ -77,6 +77,7 @@ object AppBridge {
+ 
+         /** 打开控制面板 */
+         const val ACTION_OPEN_CONTROL: Int = 4
++        const val ACTION_SHOW_CLOCK: Int = 5
+ 
+         /* ---------- 默认值 ---------- */
+ 
+@@ -84,7 +85,7 @@ object AppBridge {
+         const val DEFAULT_HAPTIC: Boolean = true
+         const val DEFAULT_SWIPE_LEFT: Int = ACTION_NEXT
+         const val DEFAULT_SWIPE_RIGHT: Int = ACTION_PREVIOUS
+-        const val DEFAULT_TAP: Int = ACTION_OPEN_CONTROL
++        const val DEFAULT_TAP: Int = ACTION_SHOW_CLOCK
+         const val DEFAULT_LONG_PRESS: Int = ACTION_TOGGLE_PLAY
+     }
+ 
+diff --git a/build.gradle.kts b/build.gradle.kts
+index 2fb6184..ff0c9a8 100644
+--- a/build.gradle.kts
++++ b/build.gradle.kts
+@@ -11,8 +11,8 @@ plugins {
+ }
+ 
+ extra["appPackageName"] = "io.github.proify.lyricon"
+-extra["appVersionCode"] = 51
+-extra["appVersionName"] = "1.0.40.rc"
++extra["appVersionCode"] = 54
++extra["appVersionName"] = "1.0.40.rc-xy21-api102"
+ extra["compileSdkVersion"] = 37
+ extra["targetSdkVersion"] = 37
+ extra["minSdkVersion"] = 29
+diff --git a/docs/ttxxxy-fixes.md b/docs/ttxxxy-fixes.md
+new file mode 100644
+index 0000000..64dce63
+--- /dev/null
++++ b/docs/ttxxxy-fixes.md
+@@ -0,0 +1,37 @@
++# TTXXXY fork / API 102 release
++
++本版本以 TTXXXY/lyricon 的 ecd34fcec2a8c7d8233b585a5100d886803d631c 为基础，合并 tomakino/lyricon master 的 c93da0eef8b7aee015d2670b48e9e262fcf72cd1。真实 merge 保留双方历史；分叉点是 c47d0fa005aef2e1b9e194e682631d372c3307be。
++
++保留 fork 的 MiuiIslandHooker 目标类、onIslandSizeChanged 回调、横屏退出、时钟切换和岛收起后延迟更新位置。将这些行为移植至上游的新歌词渲染、logo、AI 和手势实现。
++
++## 几何和默认设置
++
++- 小米/Redmi/POCO 竖屏无岛时，从歌词真实屏幕位置到 displayCutout 摄像头左边缘计算宽度，扣除右边距、4dp 间隔和额外 3 个物理像素。无法获得 cutout 时保守回退到屏幕中心减 16dp 再减 3px。
++- 有岛时沿用 fork 的实际 Rect 和父容器屏幕坐标算法，宽度增加 2 个物理像素；文本始终在剩余宽度内布局。
++- clock 和 notification_icon_area 默认在播放且歌词可见时隐藏。旧设置中的空规则首次升级采用此默认值，已有非空自定义规则保留。
++- 通过 libxposed service 首次连接，将旧私有 baseLyricStyle / packageStyleManager / package_style_* 迁移至上游的 lyricon_style_* 共享偏好组。旧隐藏模式 3 转换为上游的隐藏模式 1，保留已配置的播放器和样式。目标组已有设置优先，成功后写入一次性迁移标记。
++- 保留点击歌词切换时钟，作为新版手势的默认单击动作；设置页可改为上游控制面板或其他动作。
++
++## 翻译
++
++新渲染器 LyricLineAssembler 优先选择 translation/translationWords，再回退 secondary，最后依据开关选择 roma。SuperLyric 的网易云 secondary 罗马音不再抢占真正的翻译。
++
++如果输入源在没有翻译时将罗马音误标记为 translation，Lyricon 无法从字符串本身可靠识别；这仍需提供端正确标记字段。
++
++## LSPosed API 102
++
++采用 io.github.libxposed:api:102.0.0。minApiVersion/targetApiVersion 均为 102，以 onPackageReady 的最终 classLoader 安装 hook，使用 hook(Method).intercept/Chain.proceed。不包含 legacy xposed_init 或 xposedsharedprefs 元数据。
++
++API 文档：https://repo.maven.apache.org/maven2/io/github/libxposed/api/102.0.0/api-102.0.0-sources.jar
++
++应用使用上游的 libxposed service 偏好接口；不依赖可被其他应用读取的私有 XML。最终 application 模块 compileOnly API，使 R8 正确将宿主 API 识别为库类型。
++
++## 构建与验证
++
++版本：54 / 1.0.40.rc-xy21-api102；上游最低 Android 10（API 29）。assembleRelease 使用代码和资源缩减，不可调试。保留用户已验证测试 APK 的签名，使其能覆盖更新；它不是 TTXXXY 或 tomakino 的官方签名。不要上传签名私钥。
++
++检查翻译选择单元测试、CameraWidth 的 5 个固定用例和 10000 个边界用例、release 签名与元数据。没有连接小米设备，合并后的 SystemUI 运行行为仍需真机验证。
++
++安装后打开一次应用以迁移设置，确认 LSPosed 作用域为 SystemUI，再重启。重点验证：有岛/无岛长歌词边界、岛收起后恢复、歌词和时钟切换、横竖屏、网易云原文和翻译、设置保存与重新启动。
++
++旧 fork 中原先未引用的源码保留在 archive/unreferenced-upstream；新版实际运行对应的上游实现。
+diff --git a/gradlew b/gradlew
+old mode 100755
+new mode 100644
+diff --git a/lyric/statusbarlyric/src/main/java/io/github/proify/lyricon/statusbarlyric/CameraWidth.java b/lyric/statusbarlyric/src/main/java/io/github/proify/lyricon/statusbarlyric/CameraWidth.java
+new file mode 100644
+index 0000000..478f165
+--- /dev/null
++++ b/lyric/statusbarlyric/src/main/java/io/github/proify/lyricon/statusbarlyric/CameraWidth.java
+@@ -0,0 +1,10 @@
++package io.github.proify.lyricon.statusbarlyric;
++
++/** All inputs are pixels in the same screen coordinate system. */
++public final class CameraWidth {
++    private CameraWidth() {}
++    public static int available(int cameraLeft, int lyricLeft, int gap) {
++        long width = (long) cameraLeft - lyricLeft - Math.max(0, gap);
++        return (int) Math.max(0, Math.min(Integer.MAX_VALUE, width));
++    }
++}
+diff --git a/lyric/statusbarlyric/src/main/kotlin/io/github/proify/lyricon/statusbarlyric/StatusBarLyric.kt b/lyric/statusbarlyric/src/main/kotlin/io/github/proify/lyricon/statusbarlyric/StatusBarLyric.kt
+index 2f9c6c1..9b82e4a 100644
+--- a/lyric/statusbarlyric/src/main/kotlin/io/github/proify/lyricon/statusbarlyric/StatusBarLyric.kt
++++ b/lyric/statusbarlyric/src/main/kotlin/io/github/proify/lyricon/statusbarlyric/StatusBarLyric.kt
+@@ -11,6 +11,9 @@ import android.annotation.SuppressLint
+ import android.app.KeyguardManager
+ import android.content.Context
+ import android.content.res.Configuration
++import android.graphics.Rect
++import android.os.Build
++import android.view.ViewTreeObserver
+ import android.os.Handler
+ import android.util.Log
+ import android.view.GestureDetector
+@@ -48,6 +51,10 @@ class StatusBarLyric(
+     linkedTextView: TextView?
+ ) : LinearLayout(context) {
+ 
++    private var miuiIslandRect: Rect? = null
++    private var userHideLyric = false
++    private var cachedContainerScreenLeft = 0
++
+     companion object {
+         const val VIEW_TAG: String = "lyricon:lyric_view"
+         private const val TAG = "StatusBarLyric"
+@@ -369,7 +376,7 @@ class StatusBarLyric(
+     val enableEnterAnim get() = currentStyle.packageStyle.text.enableEnterAnim
+     private var lastDisabledVisible: Boolean = false
+     fun updateVisibility() {
+-        val shouldShow = isPlaying
++        val shouldShow = isPlaying && !userHideLyric
+                 && !isHideOnLockScreen()
+                 && textView.shouldShow()
+                 && !lyricTimedOut
+@@ -612,7 +619,81 @@ class StatusBarLyric(
+         Log.d(TAG, "updateWidthInternal: $width")
+     }
+ 
++    private val cameraLayoutListener = ViewTreeObserver.OnGlobalLayoutListener {
++        if (usesCameraWidth() && miuiIslandRect == null && !isOplusCapsuleShowing) {
++            val target = calculateContainerWidth(currentStyle.basicStyle)
++            if (layoutParams?.width != target) updateWidthInternal(currentStyle)
++        }
++    }
++
++
++    private fun usesCameraWidth(): Boolean {
++        val maker = Build.MANUFACTURER.lowercase()
++        val brand = Build.BRAND.lowercase()
++        return (maker == "xiaomi" || brand in setOf("xiaomi", "redmi", "poco")) &&
++            resources.configuration.orientation == Configuration.ORIENTATION_PORTRAIT
++    }
++
++    override fun onAttachedToWindow() {
++        super.onAttachedToWindow()
++        viewTreeObserver.addOnGlobalLayoutListener(cameraLayoutListener)
++        // 延迟一帧读取，确保 View 树第一次 layout 已完成，坐标稳定
++        post {
++            val loc = IntArray(2)
++            (parent as? View)?.getLocationOnScreen(loc)
++            cachedContainerScreenLeft = loc[0]
++            Log.d(TAG, "onAttachedToWindow: cachedContainerScreenLeft=$cachedContainerScreenLeft")
++            updateWidthInternal(currentStyle)
++        }
++    }
++
++    override fun onDetachedFromWindow() {
++        if (viewTreeObserver.isAlive) viewTreeObserver.removeOnGlobalLayoutListener(cameraLayoutListener)
++        super.onDetachedFromWindow()
++    }
++
++    fun setUserHideLyric(hide: Boolean) {
++        if (userHideLyric == hide) return
++        userHideLyric = hide
++        updateVisibility()
++    }
++
++    fun setMiuiIslandRect(rect: Rect?) {
++        miuiIslandRect = rect
++        triggerSingleTransition()
++        updateWidthInternal(currentStyle)
++    }
++
++    private fun calculateIslandAwareWidth(rect: Rect): Int {
++        val islandLeft = rect.left
++        val maxWidth = (islandLeft - cachedContainerScreenLeft + 2).coerceAtLeast(1)
++        Log.d(TAG, "calculateIslandAwareWidth: islandLeft=$islandLeft cachedContainerScreenLeft=$cachedContainerScreenLeft maxWidth=$maxWidth")
++        return maxWidth
++    }
++
++    private fun calculateCameraWidth(): Int {
++        val root = rootView
++        val rootScreen = IntArray(2)
++        val rootWindow = IntArray(2)
++        val lyricScreen = IntArray(2)
++        root.getLocationOnScreen(rootScreen)
++        root.getLocationInWindow(rootWindow)
++        getLocationOnScreen(lyricScreen)
++        val windowOffset = rootScreen[0] - rootWindow[0]
++        val cutout = rootWindowInsets?.displayCutout?.boundingRects
++            ?.filter { !it.isEmpty && it.top <= root.height && it.left > root.width / 4 }
++            ?.minByOrNull { it.left }
++        val cameraLeft = cutout?.left?.plus(windowOffset)
++            ?: (rootScreen[0] + (root.width.takeIf { it > 0 } ?: resources.displayMetrics.widthPixels) / 2 - 12.dp)
++        val lyricLeft = if (isLaidOut) lyricScreen[0] else cachedContainerScreenLeft + currentStyle.basicStyle.margins.left.dp
++        return CameraWidth.available(cameraLeft, lyricLeft, 4.dp + currentStyle.basicStyle.margins.right.dp + 3)
++    }
++
+     private fun calculateContainerWidth(basicStyle: BasicStyle): Int {
++        if (!isOplusCapsuleShowing) {
++            miuiIslandRect?.let { return calculateIslandAwareWidth(it) }
++            if (usesCameraWidth()) return calculateCameraWidth()
++        }
+         val isLandScape = isLandScape()
+         return basicStyle.getAutoWidth(isLandScape, isOplusCapsuleShowing).dp
+     }
+@@ -625,9 +706,9 @@ class StatusBarLyric(
+         textView.layoutParams = lp
+     }
+ 
+-    private fun ensureLayoutParams(): LayoutParams {
+-        val lp = layoutParams as? LayoutParams
+-            ?: LayoutParams(
++    private fun ensureLayoutParams(): MarginLayoutParams {
++        val lp = layoutParams as? MarginLayoutParams
++            ?: MarginLayoutParams(
+                 LayoutParams.WRAP_CONTENT,
+                 LayoutParams.MATCH_PARENT
+             )
+diff --git a/lyric/style/src/main/kotlin/io/github/proify/lyricon/lyric/style/BasicStyle.kt b/lyric/style/src/main/kotlin/io/github/proify/lyricon/lyric/style/BasicStyle.kt
+index 9760bf6..5a97a88 100644
+--- a/lyric/style/src/main/kotlin/io/github/proify/lyricon/lyric/style/BasicStyle.kt
++++ b/lyric/style/src/main/kotlin/io/github/proify/lyricon/lyric/style/BasicStyle.kt
+@@ -138,7 +138,7 @@ data class BasicStyle(
+         visibilityRules = json.safeDecode<MutableList<VisibilityRule>>(
+             preferences.getString(
+                 "lyric_style_base_visibility_rules",
+-                "[]"
++                Defaults.VISIBILITY_RULES.toJson()
+             ), Defaults.VISIBILITY_RULES.toMutableList()
+         )
+ 
+@@ -244,7 +244,10 @@ data class BasicStyle(
+ 
+         val MARGINS: RectF = RectF()
+         val PADDINGS: RectF = RectF()
+-        val VISIBILITY_RULES: List<VisibilityRule> = emptyList()
++        val VISIBILITY_RULES: List<VisibilityRule> = listOf(
++            VisibilityRule("clock", VisibilityRule.MODE_HIDE_WHEN_PLAYING),
++            VisibilityRule("notification_icon_area", VisibilityRule.MODE_HIDE_WHEN_PLAYING)
++        )
+         const val HIDE_ON_LOCK_SCREEN: Boolean = true
+         const val NO_LYRIC_HIDE_TIMEOUT: Int = 0
+         const val NO_UPDATE_HIDE_TIMEOUT: Int = 0
+diff --git a/lyric/view/src/main/kotlin/io/github/proify/lyricon/lyric/view/LyricLineAssembler.kt b/lyric/view/src/main/kotlin/io/github/proify/lyricon/lyric/view/LyricLineAssembler.kt
+index 8829263..acbb8ae 100644
+--- a/lyric/view/src/main/kotlin/io/github/proify/lyricon/lyric/view/LyricLineAssembler.kt
++++ b/lyric/view/src/main/kotlin/io/github/proify/lyricon/lyric/view/LyricLineAssembler.kt
+@@ -56,11 +56,6 @@ internal class LyricLineAssembler(
+             isAlignedRight = source.isAlignedRight
+ 
+             when {
+-                !source.secondary.isNullOrBlank() || !source.secondaryWords.isNullOrEmpty() -> {
+-                    text = source.secondary
+-                    words = wordBuilder.build(source, source.secondary, source.secondaryWords)
+-                    generated = words !== source.secondaryWords
+-                }
+                 displayTranslation && (!source.translation.isNullOrBlank()
+                         || !source.translationWords.isNullOrEmpty()) -> {
+                     text = source.translation
+@@ -68,6 +63,11 @@ internal class LyricLineAssembler(
+                     metadata = lyricMetadataOf("translation" to "true")
+                     generated = words !== source.translationWords
+                 }
++                !source.secondary.isNullOrBlank() || !source.secondaryWords.isNullOrEmpty() -> {
++                    text = source.secondary
++                    words = wordBuilder.build(source, source.secondary, source.secondaryWords)
++                    generated = words !== source.secondaryWords
++                }
+                 displayRoma -> {
+                     text = source.roma
+                     words = wordBuilder.build(source, source.roma, null)
+diff --git a/lyric/view/src/test/java/io/github/proify/lyricon/lyric/view/TranslationSelectionTest.kt b/lyric/view/src/test/java/io/github/proify/lyricon/lyric/view/TranslationSelectionTest.kt
+new file mode 100644
+index 0000000..7f947b3
+--- /dev/null
++++ b/lyric/view/src/test/java/io/github/proify/lyricon/lyric/view/TranslationSelectionTest.kt
+@@ -0,0 +1,34 @@
++package io.github.proify.lyricon.lyric.view
++
++import io.github.proify.lyricon.lyric.model.RichLyricLine
++import org.junit.Assert.*
++import org.junit.Test
++
++class TranslationSelectionTest {
++    @Test fun translationWinsOverSuperLyricRomajiSecondary() {
++        val source = RichLyricLine(begin = 1000, end = 4000, text = "君が好き",
++            translation = "我喜欢你", secondary = "kimi ga suki", roma = "kimi ga suki")
++        val result = LyricLineAssembler(displayRoma = false).buildSecondary(source)
++        assertEquals("我喜欢你", result.line.text)
++        assertTrue(result.line.metadata?.getBoolean("translation") == true)
++        assertTrue(result.alwaysShow)
++    }
++    @Test fun translationWinsEvenWhenRomaEnabled() {
++        val source = RichLyricLine(begin = 1000, end = 4000, translation = "你好",
++            secondary = "konnichiwa", roma = "konnichiwa")
++        assertEquals("你好", LyricLineAssembler(displayRoma = true).buildSecondary(source).line.text)
++    }
++    @Test fun genuineSecondaryStillWorksWithoutTranslation() {
++        val source = RichLyricLine(begin = 1000, end = 4000, secondary = "second singer")
++        assertEquals("second singer", LyricLineAssembler().buildSecondary(source).line.text)
++    }
++    @Test fun explicitRomaRespectsDisplayFlag() {
++        val source = RichLyricLine(begin = 1000, end = 4000, roma = "kimi ga suki")
++        assertEquals("kimi ga suki", LyricLineAssembler(displayRoma = true).buildSecondary(source).line.text)
++        assertTrue(LyricLineAssembler(displayRoma = false).buildSecondary(source).line.text.isNullOrEmpty())
++    }
++    @Test fun disablingTranslationPreservesSecondary() {
++        val source = RichLyricLine(begin = 1000, end = 4000, translation = "你好", secondary = "second singer")
++        assertEquals("second singer", LyricLineAssembler(displayTranslation = false).buildSecondary(source).line.text)
++    }
++}
+diff --git a/lyricon/build.gradle.kts b/lyricon/build.gradle.kts
+index 0c7315e..80002aa 100644
+--- a/lyricon/build.gradle.kts
++++ b/lyricon/build.gradle.kts
+@@ -82,6 +82,7 @@ configure<ApplicationExtension> {
+ }
+ 
+ dependencies {
++    compileOnly(libs.libxposed.api)
+     implementation(project(":app"))
+     implementation(project(":xposed"))
+ 
+diff --git a/opencc-lite/build.gradle.kts b/opencc-lite/build.gradle.kts
+index 3d611a0..82472c1 100644
+--- a/opencc-lite/build.gradle.kts
++++ b/opencc-lite/build.gradle.kts
+@@ -11,4 +11,9 @@ java {
+ dependencies {
+     implementation(libs.kotlinx.serialization.json)
+     testImplementation(kotlin("test"))
+-}
+\ No newline at end of file
++}
++kotlin {
++    compilerOptions {
++        jvmTarget.set(org.jetbrains.kotlin.gradle.dsl.JvmTarget.JVM_17)
++    }
++}
+diff --git a/tools/CameraWidthCheck.java b/tools/CameraWidthCheck.java
+new file mode 100644
+index 0000000..70efeb1
+--- /dev/null
++++ b/tools/CameraWidthCheck.java
+@@ -0,0 +1,19 @@
++import io.github.proify.lyricon.statusbarlyric.CameraWidth;
++import java.util.Random;
++public class CameraWidthCheck {
++    private static void check(int edge,int anchor,int gap,int expected) {
++        if (CameraWidth.available(edge,anchor,gap)!=expected) throw new AssertionError();
++    }
++    public static void main(String[] args) {
++        check(500,40,12,448); check(540,120,16,404);
++        check(250,300,12,0); check(500,40,-2,460);
++        check(Integer.MAX_VALUE,Integer.MIN_VALUE,0,Integer.MAX_VALUE);
++        Random r=new Random(102);
++        for(int i=0;i<10000;i++) {
++            int anchor=r.nextInt(800), edge=r.nextInt(1400), gap=r.nextInt(40);
++            int width=CameraWidth.available(edge,anchor,gap);
++            if(width<0 || (width>0 && anchor+width>edge-gap)) throw new AssertionError();
++        }
++        System.out.println("Camera width: 5 fixtures and 10000 bounds checks passed");
++    }
++}
+diff --git a/xposed/src/main/kotlin/io/github/proify/lyricon/xposed/ModuleEntry.kt b/xposed/src/main/kotlin/io/github/proify/lyricon/xposed/ModuleEntry.kt
+index e159840..941a6ce 100644
+--- a/xposed/src/main/kotlin/io/github/proify/lyricon/xposed/ModuleEntry.kt
++++ b/xposed/src/main/kotlin/io/github/proify/lyricon/xposed/ModuleEntry.kt
+@@ -40,11 +40,6 @@ class ModuleEntry : XposedModule() {
+         lateinit var instance: ModuleEntry
+     }
+ 
+-    override fun onPackageReady(param: XposedModuleInterface.PackageReadyParam) {
+-        super.onPackageReady(param)
+-        YLog.info(TAG, "onPackageReady: packageName=${param.packageName}")
+-    }
+-
+     override fun onSystemServerStarting(param: XposedModuleInterface.SystemServerStartingParam) {
+         super.onSystemServerStarting(param)
+         YLog.info(TAG, "onSystemServerStarting: classLoader=${param.classLoader}")
+@@ -59,14 +54,14 @@ class ModuleEntry : XposedModule() {
+         )
+     }
+ 
+-    override fun onPackageLoaded(param: XposedModuleInterface.PackageLoadedParam) {
++    override fun onPackageReady(param: XposedModuleInterface.PackageReadyParam) {
+         val packageName = param.packageName
+         if (packageName !in scopes) {
+-            YLog.debug(TAG, "onPackageLoaded: $packageName is not in scopes")
++            YLog.debug(TAG, "onPackageReady: $packageName is not in scopes")
+             return
+         }
+ 
+-        YLog.info(TAG, "onPackageLoaded: $packageName")
++        YLog.info(TAG, "onPackageReady: $packageName")
+ 
+         GeneralHooker.hook(this, param)
+         when (packageName) {
+diff --git a/xposed/src/main/kotlin/io/github/proify/lyricon/xposed/hook/ModernHooks.kt b/xposed/src/main/kotlin/io/github/proify/lyricon/xposed/hook/ModernHooks.kt
+new file mode 100644
+index 0000000..4b8e7c7
+--- /dev/null
++++ b/xposed/src/main/kotlin/io/github/proify/lyricon/xposed/hook/ModernHooks.kt
+@@ -0,0 +1,46 @@
++package io.github.proify.lyricon.xposed.hook
++
++import io.github.libxposed.api.XposedInterface
++import io.github.proify.lyricon.xposed.ModuleEntry
++import io.github.proify.lyricon.xposed.logger.YLog
++import java.lang.reflect.Member
++import java.lang.reflect.Method
++
++internal open class MethodCallback {
++    class MethodHookParam(val thisObject: Any?, val args: Array<Any?>) {
++        var result: Any? = null
++    }
++    open fun beforeHookedMethod(param: MethodHookParam) = Unit
++    open fun afterHookedMethod(param: MethodHookParam) = Unit
++}
++
++internal object HookMethods {
++    fun findAndHookMethod(name: String, loader: ClassLoader, method: String,
++                          vararg parameters: Any?): XposedInterface.HookHandle =
++        findAndHookMethod(loader.loadClass(name), method, *parameters)
++
++    fun findAndHookMethod(type: Class<*>, name: String,
++                          vararg parameters: Any?): XposedInterface.HookHandle {
++        val callback = parameters.last() as MethodCallback
++        val types = parameters.dropLast(1).map { it as Class<*> }.toTypedArray()
++        var owner: Class<*>? = type
++        while (owner != null) {
++            try {
++                return hookMethod(owner.getDeclaredMethod(name, *types), callback)
++            } catch (_: NoSuchMethodException) { owner = owner.superclass }
++        }
++        throw NoSuchMethodException("${type.name}.$name")
++    }
++
++    fun hookMethod(member: Member, callback: MethodCallback): XposedInterface.HookHandle =
++        ModuleEntry.instance.hook(member as Method).intercept { chain ->
++            val param = MethodCallback.MethodHookParam(chain.thisObject, chain.args.toTypedArray())
++            // Listener failures must never suppress the SystemUI method.
++            runCatching { callback.beforeHookedMethod(param) }
++                .onFailure { YLog.error("ModernHooks", "before callback failed", it) }
++            param.result = chain.proceed(param.args)
++            runCatching { callback.afterHookedMethod(param) }
++                .onFailure { YLog.error("ModernHooks", "after callback failed", it) }
++            param.result
++        }
++}
+diff --git a/xposed/src/main/kotlin/io/github/proify/lyricon/xposed/hook/PackageHooker.kt b/xposed/src/main/kotlin/io/github/proify/lyricon/xposed/hook/PackageHooker.kt
+index 6b3d277..cf48704 100644
+--- a/xposed/src/main/kotlin/io/github/proify/lyricon/xposed/hook/PackageHooker.kt
++++ b/xposed/src/main/kotlin/io/github/proify/lyricon/xposed/hook/PackageHooker.kt
+@@ -20,10 +20,10 @@ abstract class PackageHooker {
+     }
+ 
+     protected lateinit var module: XposedModule
+-    protected lateinit var packageParam: XposedModuleInterface.PackageLoadedParam
++    protected lateinit var packageParam: XposedModuleInterface.PackageReadyParam
+ 
+     val packageName: String get() = packageParam.packageName
+-    val classLoader: ClassLoader get() = packageParam.defaultClassLoader
++    val classLoader: ClassLoader get() = packageParam.classLoader
+ 
+     @Volatile
+     var appContext: Application? = null
+@@ -130,7 +130,7 @@ abstract class PackageHooker {
+     }
+ 
+     private var isAttached = false
+-    fun hook(module: XposedModule, param: XposedModuleInterface.PackageLoadedParam) {
++    fun hook(module: XposedModule, param: XposedModuleInterface.PackageReadyParam) {
+         if (isAttached) {
+             YLog.info(TAG, "Already attached")
+             return
+diff --git a/xposed/src/main/kotlin/io/github/proify/lyricon/xposed/systemui/SystemUIHooker.kt b/xposed/src/main/kotlin/io/github/proify/lyricon/xposed/systemui/SystemUIHooker.kt
+index 742a3a9..11cfdf2 100644
+--- a/xposed/src/main/kotlin/io/github/proify/lyricon/xposed/systemui/SystemUIHooker.kt
++++ b/xposed/src/main/kotlin/io/github/proify/lyricon/xposed/systemui/SystemUIHooker.kt
+@@ -22,6 +22,7 @@ import io.github.proify.lyricon.subscriber.LyriconFactory
+ import io.github.proify.lyricon.subscriber.LyriconSubscriber
+ import io.github.proify.lyricon.xposed.ModuleEntry
+ import io.github.proify.lyricon.xposed.hook.PackageHooker
++import io.github.proify.lyricon.xposed.systemui.hook.MiuiIslandHooker
+ import io.github.proify.lyricon.xposed.logger.YLog
+ import io.github.proify.lyricon.xposed.systemui.ai.translate.AiTranslator
+ import io.github.proify.lyricon.xposed.systemui.hook.OplusCapsuleHooker
+@@ -133,6 +134,7 @@ object SystemUIHooker : PackageHooker() {
+         val context = appContext ?: return
+ 
+         ScreenStateMonitor.initialize(context)
++        MiuiIslandHooker.initialize(classLoader)
+         OplusCapsuleHooker.initialize(module, classLoader)
+         NotificationCoverHelper.initialize()
+         ViewVisibilityTracker.initialize(module, classLoader)
+@@ -155,7 +157,7 @@ object SystemUIHooker : PackageHooker() {
+         StatusBarColorMonitor.initialize(module, classLoader)
+         AiTranslator.init(context)
+         SystemUIMediaUtils.init(context)
+-        StatusBarViewResolver.init(module, context)
++        StatusBarViewResolver.init(module, context, classLoader)
+     }
+ 
+     private fun initLyriconService() {
+diff --git a/xposed/src/main/kotlin/io/github/proify/lyricon/xposed/systemui/hook/MiuiIslandHooker.kt b/xposed/src/main/kotlin/io/github/proify/lyricon/xposed/systemui/hook/MiuiIslandHooker.kt
+new file mode 100644
+index 0000000..fd2aff5
+--- /dev/null
++++ b/xposed/src/main/kotlin/io/github/proify/lyricon/xposed/systemui/hook/MiuiIslandHooker.kt
+@@ -0,0 +1,140 @@
++/*
++ * Copyright 2026 Proify, Tomakino
++ * Licensed under the Apache License, Version 2.0
++ * http://www.apache.org/licenses/LICENSE-2.0
++ */
++
++package io.github.proify.lyricon.xposed.systemui.hook
++
++import android.graphics.Rect
++import io.github.proify.lyricon.xposed.hook.MethodCallback
++import io.github.proify.lyricon.xposed.hook.HookMethods
++import io.github.proify.lyricon.xposed.logger.YLog
++import java.util.concurrent.CopyOnWriteArrayList
++
++/**
++ * 小米澎湃超级岛感知器
++ *
++ * 监听 IslandMonitor 的 onIslandSizeChanged 回调：
++ *   - Rect 非全零 → 岛出现，将实际 Rect 传递给监听器（包含 islandLeft 坐标）
++ *   - Rect 全零   → 岛消失，传递 null
++ *
++ * 与 [OplusCapsuleHooker] 保持一致的接口风格，供 LyricViewController 并联注册。
++ * 感知层不做任何宽度决策，将原始 Rect 原样上报，由消费方动态计算限宽。
++ */
++object MiuiIslandHooker {
++
++    private const val TAG = "MiuiIslandHooker"
++
++    /**
++     * Hook 目标：IslandMonitor 的匿名 stateListener 实现类。
++     * 类名由 MIUI/HyperOS SystemUI 反编译确认。
++     */
++    private const val STATE_LISTENER_CLASS =
++        "com.android.systemui.statusbar.IslandMonitor\$RealContainerIslandMonitor\$stateListener\$1"
++
++    private val listeners = CopyOnWriteArrayList<IslandStateChangeListener>()
++
++    /** 当前岛的 Rect（屏幕绝对坐标），null 表示岛不存在 */
++    var currentRect: Rect? = null
++        private set
++
++    val isShowing: Boolean get() = currentRect != null
++
++    /**
++     * 当前是否处于横屏状态。
++     * 横屏时所有岛回调静默丢弃，不分发给监听器。
++     */
++    @Volatile
++    var isLandscape: Boolean = false
++
++    private var unhook: io.github.libxposed.api.XposedInterface.HookHandle? = null
++
++    /**
++     * 检测当前 ClassLoader 是否含有小米超级岛目标类。
++     * 在非小米机型上静默返回 false，initialize() 直接跳过。
++     */
++    fun isSupported(classLoader: ClassLoader): Boolean = try {
++        classLoader.loadClass(STATE_LISTENER_CLASS)
++        true
++    } catch (_: Exception) {
++        false
++    }
++
++    /**
++     * 初始化 Hook。
++     * 若机型不支持超级岛则静默退出，不影响其他机型。
++     */
++    fun initialize(classLoader: ClassLoader) {
++        unhook?.unhook()
++        unhook = null
++
++        if (!isSupported(classLoader)) {
++            YLog.info(TAG, "超级岛目标类不存在，跳过初始化（非小米机型）")
++            return
++        }
++
++        try {
++            unhook = HookMethods.findAndHookMethod(
++                classLoader.loadClass(STATE_LISTENER_CLASS),
++                "onIslandSizeChanged",
++                Rect::class.java,
++                Boolean::class.javaPrimitiveType,
++                object : MethodCallback() {
++                    override fun afterHookedMethod(param: MethodHookParam) {
++                        val rect = param.args[0] as? Rect ?: return
++                        val isEmpty = rect.left == 0 && rect.right == 0
++                                && rect.top == 0 && rect.bottom == 0
++                        onIslandStateChanged(if (isEmpty) null else rect)
++                    }
++                }
++            )
++            YLog.info(TAG, "Hook 注册成功 ✅")
++        } catch (t: Throwable) {
++            YLog.error(TAG, "Hook 注册失败", t)
++        }
++    }
++
++    fun registerListener(listener: IslandStateChangeListener): Boolean =
++        listeners.add(listener)
++
++    fun unregisterListener(listener: IslandStateChangeListener): Boolean =
++        listeners.remove(listener)
++
++    private fun onIslandStateChanged(rect: Rect?) {
++        // 横屏时静默丢弃，不影响系统状态栏行为
++        if (isLandscape) {
++            YLog.info(TAG, "横屏状态，忽略岛回调 rect=$rect")
++            return
++        }
++        // 存内容副本，防止 SystemUI 在回调结束后修改原 Rect 对象导致静默数据污染
++        val newRect = rect?.let { Rect(it) }
++        // 内容相等则不重复分发（包含 null==null 的情况）
++        if (newRect == currentRect) return
++        currentRect = newRect
++        val showing = newRect != null
++        YLog.debug(TAG, "超级岛状态变更: isShowing=$showing${if (newRect != null) " rect=$newRect" else ""}")
++        listeners.forEach { it.onMiuiIslandChanged(newRect) }
++    }
++
++    /**
++     * 横竖屏切换时调用。
++     * 横屏：立即通知所有监听器岛已消失（让歌词/时钟恢复正常），并清除 currentRect。
++     * 竖屏：恢复正常分发，等待下一次真实的岛回调。
++     */
++    fun onOrientationChanged(landscape: Boolean) {
++        if (isLandscape == landscape) return
++        isLandscape = landscape
++        YLog.info(TAG, "屏幕方向变更: landscape=$landscape")
++        if (landscape) {
++            // 横屏：强制通知岛消失，让所有监听器恢复默认状态（时钟显示，歌词可见）
++            currentRect = null
++            listeners.forEach { it.onMiuiIslandChanged(null) }
++        }
++        // 竖屏恢复：什么都不做，等岛下次真实触发
++    }
++
++    interface IslandStateChangeListener {
++        fun onMiuiIslandChanged(rect: Rect?)
++    }
++}
+diff --git a/xposed/src/main/kotlin/io/github/proify/lyricon/xposed/systemui/hook/StatusBarViewResolver.kt b/xposed/src/main/kotlin/io/github/proify/lyricon/xposed/systemui/hook/StatusBarViewResolver.kt
+index dc14ae7..d1951e5 100644
+--- a/xposed/src/main/kotlin/io/github/proify/lyricon/xposed/systemui/hook/StatusBarViewResolver.kt
++++ b/xposed/src/main/kotlin/io/github/proify/lyricon/xposed/systemui/hook/StatusBarViewResolver.kt
+@@ -60,6 +60,19 @@ object StatusBarViewResolver {
+         classLoader: ClassLoader = context.classLoader
+     ) {
+         if (isInitialized) return
++        runCatching {
++            val phoneStatusBar = classLoader.loadClass("com.android.systemui.statusbar.phone.PhoneStatusBarView")
++            val method = phoneStatusBar.getDeclaredMethod("onConfigurationChanged", android.content.res.Configuration::class.java)
++            module.hook(method).intercept { chain ->
++                val result = chain.proceed()
++                val config = chain.args[0] as android.content.res.Configuration
++                val landscape = config.orientation == android.content.res.Configuration.ORIENTATION_LANDSCAPE
++                MiuiIslandHooker.onOrientationChanged(landscape)
++                io.github.proify.lyricon.xposed.systemui.lyric.LyricViewController.onOrientationChanged(landscape)
++                result
++            }
++        }.onFailure { YLog.debug("StatusBarViewResolver", "ROM orientation hook unavailable: $it") }
++
+ 
+         val targetId = context.resources.getIdentifier(
+             "status_bar",
+diff --git a/xposed/src/main/kotlin/io/github/proify/lyricon/xposed/systemui/lyric/LyricViewController.kt b/xposed/src/main/kotlin/io/github/proify/lyricon/xposed/systemui/lyric/LyricViewController.kt
+index 7475201..7c1d939 100644
+--- a/xposed/src/main/kotlin/io/github/proify/lyricon/xposed/systemui/lyric/LyricViewController.kt
++++ b/xposed/src/main/kotlin/io/github/proify/lyricon/xposed/systemui/lyric/LyricViewController.kt
+@@ -6,6 +6,9 @@
+ 
+ package io.github.proify.lyricon.xposed.systemui.lyric
+ 
++import android.graphics.Rect
++import android.view.View
++import io.github.proify.lyricon.xposed.systemui.hook.MiuiIslandHooker
+ import android.os.Handler
+ import io.github.proify.android.extensions.crc32
+ import io.github.proify.lyricon.lyric.model.Song
+@@ -28,6 +31,7 @@ import java.io.File
+  * @since 2026
+  */
+ object LyricViewController : ActivePlayerListener,
++    MiuiIslandHooker.IslandStateChangeListener,
+     OplusCapsuleHooker.CapsuleStateChangeListener,
+     NotificationCoverHelper.OnCoverUpdateListener {
+ 
+@@ -79,6 +83,7 @@ object LyricViewController : ActivePlayerListener,
+         if (DEBUG) YLog.debug(TAG, "Initializing LyricViewController...")
+         // 注册数据总线、系统钩子及封面更新监听
+         LyricDataHub.addListener(this)
++        MiuiIslandHooker.registerListener(this)
+         OplusCapsuleHooker.registerListener(this)
+         NotificationCoverHelper.registerListener(this)
+     }
+@@ -208,6 +213,9 @@ object LyricViewController : ActivePlayerListener,
+         controller: StatusBarViewController,
+         provider: ProviderInfo?
+     ) {
++        controller.setUserShowClock(false)
++        val clockId = controller.context.resources.getIdentifier("clock", "id", controller.context.packageName)
++        controller.statusBarView.findViewById<View>(clockId)?.setOnClickListener(null)
+         val view = controller.lyricView
+         view.setSong(null)
+         view.setPlaying(false)
+@@ -276,6 +284,83 @@ object LyricViewController : ActivePlayerListener,
+         updateCoverFile(coverFile)
+     }
+ 
++    fun onOrientationChanged(landscape: Boolean) {
++        YLog.debug(TAG, "onOrientationChanged: landscape=$landscape")
++        if (landscape) {
++            // 横屏：隐藏歌词，清除点击监听，完全交由系统接管
++            // 借鉴1.0.32：setUserShowClock(true) → setUserHideLyric(true) → updateVisibility() 自然返回 false
++            // 这样任何后续的 layout pass / updateVisibility 调用都不会把歌词再显示出来
++            updateAllControllers {
++                setUserShowClock(true)
++
++                val clockId = context.resources.getIdentifier("clock", "id", context.packageName)
++                statusBarView.findViewById<View>(clockId)?.setOnClickListener(null)
++                YLog.debug(TAG, "onOrientationChanged landscape: userShowClock set to true, lyric hidden")
++            }
++        } else {
++            // 竖屏恢复：重置 userShowClock，让 updateVisibility() 根据播放状态自然决定
++            updateAllControllers {
++                setUserShowClock(false)
++                // Fix Bug2（横屏→竖屏路径）：补刷翻译行可见性
++                refreshTranslationVisibility(lyricView)
++                // 横屏时清除了 lyricView 的点击监听，竖屏恢复时补回常驻监听
++
++                YLog.debug(TAG, "onOrientationChanged portrait: userShowClock reset, lyric restored")
++            }
++        }
++    }
++
++    override fun onMiuiIslandChanged(rect: Rect?) {
++        val isShowing = rect != null
++        updateAllControllers {
++            isMiuiIslandShowing = isShowing
++            if (isShowing) {
++                // 岛出现：applyVisibilityRulesNow 会自动通过 islandRule 隐藏时钟（只要 userShowClock=false）
++                // lyricView 的点击监听已在 onCreate 时常驻注册，无需每次重复设置
++                YLog.debug("LyricViewController", "超级岛出现，隐藏时钟（由 islandRule 驱动）userShowClock=$userShowClock")
++            } else {
++                // 岛消失：若用户之前切到时钟，恢复歌词并补刷翻译行
++                if (userShowClock) {
++                    setUserShowClock(false)
++                    // Fix Bug2（岛消失路径）：补刷翻译行防止恢复后翻译行残留在 GONE 状态
++                    refreshTranslationVisibility(lyricView)
++                }
++                // Fix Bug3：清除时钟上可能残留的 onClockClicked 僵尸监听。
++                // lyricView 的监听保持常驻，不在此清除，保证岛消失后用户仍可点击歌词切时钟。
++                val clockId = context.resources.getIdentifier("clock", "id", context.packageName)
++                statusBarView.findViewById<View>(clockId)?.setOnClickListener(null)
++                YLog.debug("LyricViewController", "超级岛消失，恢复时钟")
++            }
++            lyricView.setMiuiIslandRect(rect)
++            // 岛收起后，补执行被推迟的位置更新
++            if (!isShowing && pendingLocationUpdate) {
++                YLog.info("LyricViewController", "Flushing deferred location update after island hidden")
++                updateLyricStyle(currentLyricStyle)
++            }
++        }
++    }
++
++    internal fun onLyricClickedPublic(controller: StatusBarViewController) {
++        YLog.debug(TAG, "onLyricClicked → 切换到时钟")
++        controller.setUserShowClock(true)
++        // 给时钟注册点击，点击后切回歌词
++        val clockId = controller.context.resources.getIdentifier("clock", "id", controller.context.packageName)
++        controller.statusBarView.findViewById<View>(clockId)?.setOnClickListener {
++            onClockClicked(controller)
++        }
++    }
++
++    private fun onClockClicked(controller: StatusBarViewController) {
++        if (!controller.userShowClock) return
++        YLog.debug(TAG, "onClockClicked → 切回歌词")
++        controller.setUserShowClock(false)
++        // Fix Bug2: 补刷翻译行，防止恢复后翻译行残留在 GONE 状态
++        refreshTranslationVisibility(controller.lyricView)
++        // 移除时钟点击监听；lyricView 的监听已常驻，无需重复注册
++        val clockId = controller.context.resources.getIdentifier("clock", "id", controller.context.packageName)
++        controller.statusBarView.findViewById<View>(clockId)?.setOnClickListener(null)
++    }
++
+     private var lastCoverSignature = 0L
+     private fun updateCoverFile(coverFile: File?) {
+         if (coverFile != null) {
+diff --git a/xposed/src/main/kotlin/io/github/proify/lyricon/xposed/systemui/lyric/StatusBarViewController.kt b/xposed/src/main/kotlin/io/github/proify/lyricon/xposed/systemui/lyric/StatusBarViewController.kt
+index fc0c80f..3058307 100644
+--- a/xposed/src/main/kotlin/io/github/proify/lyricon/xposed/systemui/lyric/StatusBarViewController.kt
++++ b/xposed/src/main/kotlin/io/github/proify/lyricon/xposed/systemui/lyric/StatusBarViewController.kt
+@@ -7,6 +7,8 @@
+ package io.github.proify.lyricon.xposed.systemui.lyric
+ 
+ import android.annotation.SuppressLint
++import io.github.proify.lyricon.lyric.style.VisibilityRule
++import io.github.proify.lyricon.xposed.systemui.hook.MiuiIslandHooker
+ import android.content.Context
+ import android.graphics.drawable.GradientDrawable
+ import android.view.View
+@@ -61,6 +63,11 @@ class StatusBarViewController(
+     private var tapAction: Int = LyricGesturePrefs.DEFAULT_TAP
+     private var longPressAction: Int = LyricGesturePrefs.DEFAULT_LONG_PRESS
+ 
++    var isMiuiIslandShowing = MiuiIslandHooker.isShowing
++    var userShowClock = false
++        private set
++    internal var pendingLocationUpdate = false
++
+     private var lastAnchor = ""
+     private var lastInsertionOrder = -1
+     private var internalRemoveLyricViewFlag = false
+@@ -96,6 +103,7 @@ class StatusBarViewController(
+         lyricView.onPlayingChanged = { _ -> }
+ 
+         // 手势控制:读取偏好并绑定回调,手势动作可配置
++        lyricView.setMiuiIslandRect(MiuiIslandHooker.currentRect)
+         refreshGestureConfig()
+         lyricView.gestureListener = { gesture -> onLyricGesture(gesture) }
+ 
+@@ -114,6 +122,7 @@ class StatusBarViewController(
+         lyricView.removeOnAttachStateChangeListener(lyricAttachListener)
+         ScreenStateMonitor.removeListener(this)
+         lyricView.onPlayingChanged = null
++        getClockView()?.setOnClickListener(null)
+         lyricView.gestureListener = null
+         lyricView.setOnClickListener(null)
+         LyricControlPopup.dismissIfOwnedBy(lyricView)
+@@ -220,6 +229,11 @@ class StatusBarViewController(
+      * 处理视图注入逻辑：根据 BasicStyle 寻找锚点并插入歌词视图
+      */
+     private fun updateLocation(baseStyle: BasicStyle) {
++        if (isMiuiIslandShowing && lyricView.isAttachedToWindow) {
++            pendingLocationUpdate = true
++            return
++        }
++        pendingLocationUpdate = false
+         val anchor = baseStyle.anchor
+         val anchorId = context.resources.getIdentifier(anchor, "id", context.packageName)
+         val anchorView = statusBarView.findViewById<View>(anchorId) ?: return run {
+@@ -262,6 +276,10 @@ class StatusBarViewController(
+ 
+     fun checkLyricViewExists() {
+         if (lyricView.isAttachedToWindow) return
++        if (isMiuiIslandShowing) {
++            pendingLocationUpdate = true
++            return
++        }
+         lastAnchor = ""
+         lastInsertionOrder = -1
+         updateLyricStyle(currentLyricStyle)
+@@ -271,10 +289,15 @@ class StatusBarViewController(
+ 
+     private fun getClockView(): View? = ClockViewFinder.find(statusBarView)
+ 
+-    private var wasPlayingBeforeVisibilityUpdate: Boolean = false
++    fun setUserShowClock(show: Boolean) {
++        if (userShowClock == show) return
++        userShowClock = show
++        lyricView.setUserHideLyric(show)
++        applyVisibilityRulesNow()
++    }
+ 
+     fun computeShouldApplyPlayingRules(): Boolean {
+-        return isPlaying && when {
++        return !userShowClock && isPlaying && when {
+             lyricView.isDisabledVisible -> !lyricView.isHideOnLockScreen()
+             lyricView.isVisible -> true
+             else -> false
+@@ -282,24 +305,43 @@ class StatusBarViewController(
+     }
+ 
+     private fun applyVisibilityRulesNow() {
+-        val isPlaying = computeShouldApplyPlayingRules()
+-        fun apply() {
++        fun computeShouldApplyPlayingRules(): Boolean {
++            return LyricViewController.isPlaying && when {
++                lyricView.isDisabledVisible -> !lyricView.isHideOnLockScreen()
++                lyricView.isVisible -> true
++                else -> false
++            }
++        }
++
++        // 1.0.32 做法：userShowClock=true 时直接不应用任何规则（时钟恢复正常）
++        if (userShowClock) {
+             visibilityController.applyVisibilityRules(
+                 rules = currentLyricStyle.basicStyle.visibilityRules,
+-                isPlaying = isPlaying
++                isPlaying = false
+             )
++            return
+         }
+ 
+-        if (!isPlaying) {
+-            // 仅在之前是播放状态时才更新（避免重复更新非播放状态的隐藏逻辑）
+-            if (wasPlayingBeforeVisibilityUpdate) {
+-                apply()
+-                wasPlayingBeforeVisibilityUpdate = false
+-            }
++        val isPlaying = computeShouldApplyPlayingRules()
++
++        // 超级岛存在 + 歌词可见时，自动追加 clock=HIDE_WHEN_PLAYING 规则，
++        // 每次 layout 触发都重新隐藏时钟，防止系统 layout pass 把时钟恢复。
++        // 关键修复：必须同时检查 lyricView.isVisible，
++        // 歌词因超时/无歌词被 GONE 后不能继续强制隐藏时钟（Bug2修复）。
++        val islandRule = if (isMiuiIslandShowing && lyricView.isVisible) {
++            listOf(VisibilityRule("clock", VisibilityRule.MODE_HIDE_WHEN_PLAYING))
+         } else {
+-            apply()
+-            wasPlayingBeforeVisibilityUpdate = true
++            emptyList()
+         }
++
++        // 岛规则优先于用户规则
++        val mergedRules = currentLyricStyle.basicStyle.visibilityRules
++            .filter { rule -> islandRule.none { it.id == rule.id } } + islandRule
++
++        visibilityController.applyVisibilityRules(
++            rules = mergedRules,
++            isPlaying = if (islandRule.isNotEmpty()) true else isPlaying
++        )
+     }
+ 
+     private fun createLyricView(style: LyricStyle) =
+@@ -337,7 +379,7 @@ class StatusBarViewController(
+             lyricView.setOnClickListener(null)
+         } else {
+             lyricView.setOnClickListener { v ->
+-                LyricControlPopup.show(v)
++                LyricViewController.onLyricClickedPublic(this)
+             }
+         }
+         // setOnClickListener(null) 会关闭 clickable,这里恢复以保持手势模式下的点击语义(无障碍)
+@@ -358,6 +400,7 @@ class StatusBarViewController(
+         }
+ 
+         when (action) {
++            LyricGesturePrefs.ACTION_SHOW_CLOCK -> LyricViewController.onLyricClickedPublic(this)
+             LyricGesturePrefs.ACTION_NONE -> Unit
+             LyricGesturePrefs.ACTION_TOGGLE_PLAY -> PlaybackControl.togglePlay()
+             LyricGesturePrefs.ACTION_PREVIOUS -> PlaybackControl.previous()
+diff --git a/xposed/src/main/resources/META-INF/xposed/module.prop b/xposed/src/main/resources/META-INF/xposed/module.prop
+index dba303d..eb25611 100644
+--- a/xposed/src/main/resources/META-INF/xposed/module.prop
++++ b/xposed/src/main/resources/META-INF/xposed/module.prop
+@@ -1,3 +1,3 @@
+-minApiVersion=101
+-targetApiVersion=101
++minApiVersion=102
++targetApiVersion=102
+ staticScope=true
+\ No newline at end of file
